@@ -42,7 +42,7 @@ export default [{
         component: () => import(/* webpackChunkName: "Workbench" */ '../views/Workbench/view/index.vue'),
     }, {
         props: true,
-        path: "editor",
+        path: "editor/:uuid?",
         name: "workbenchEditor",
         component: () => import(/* webpackChunkName: "Workbench" */ '../views/Workbench/editor/index.vue'),
     }]

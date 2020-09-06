@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="editor">
     workbench-editor
   </div>
 </template>
@@ -7,6 +7,7 @@
 <script>
 export default {
   name: "workbench-editor",
+  props: ['uuid'],
   methods: {
     //
   },

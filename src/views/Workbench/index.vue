@@ -1,7 +1,7 @@
 <template>
   <div id="App">
     <workbench-menu :show="workbench.menu" @listClick="menuClick"/>
-    <div id="container">
+    <div id="container" :class="{'container-editor':workbench.menu}">
       <router-view :menuShow="workbench.menu" @menuShow="menuShow"/>
     </div>
     <!-- 菜单的集合 -->

@@ -1,0 +1,42 @@
+.view {
+  left: 50%;
+  top: 40vh;
+  position: absolute;
+  transform: translate(-50%, -40%);
+
+  &-tips-title {
+    line-height: 30px;
+
+    i {
+      margin: 0 8px;
+      font-size: 30px;
+    }
+  }
+
+  &-card {
+    display: flex;
+    padding-top: 32px;
+    //align-items: center;
+    align-items: stretch;
+
+    &-icon {
+      font-size: 30px;
+    }
+
+    &-list {
+      width: 200px;
+      border: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /deep/
+    .el-card {
+      border: none;
+    }
+
+    .el-card + .el-card {
+      margin-left: 16px;
+    }
+  }
+}

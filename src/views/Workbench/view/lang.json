@@ -1,0 +1,38 @@
+{
+  "zh": {
+    "tips": {
+      "title": "从触摸 {icon} 开始您的第一个简介",
+      "msg": "把目光移动到左侧, 紧贴游览器左侧, 看到了吗."
+    },
+    "card": {
+      "edit": "创建空白文件",
+      "add": "导入文件",
+      "archive": "加载存档",
+      "transport": "远程获取"
+    },
+    "msg": {
+      "edit": "没有任何内容，需要了解使用方法",
+      "add": "导入本地文件进行解析",
+      "archive": "导入存档缓存文件",
+      "transport": "通过网络获取文件解析"
+    }
+  },
+  "en": {
+    "tips": {
+      "title": "Touch {icon} Start your first introduction",
+      "msg": "Move your gaze to the left, close to the left side of the browser, see it."
+    },
+    "card": {
+      "edit": "Create blank file",
+      "add": "Importing files",
+      "archive": "Load archive",
+      "transport": "Remote access"
+    },
+    "msg": {
+      "edit": "No content, need to know how to use",
+      "add": "Import local files and edit",
+      "archive": "Load the cache file and edit",
+      "transport": "Get files through the network and parse"
+    }
+  }
+}
