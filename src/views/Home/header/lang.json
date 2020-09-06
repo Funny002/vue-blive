@@ -1,0 +1,16 @@
+{
+  "zh": {
+    "me": "我",
+    "home": "首页",
+    "donate": "捐赠",
+    "project": "项目",
+    "search": "输入关键字搜索"
+  },
+  "en": {
+    "me": "me",
+    "home": "home",
+    "donate": "donate",
+    "project": "project",
+    "search": "Keyword search"
+  }
+}
