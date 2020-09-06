@@ -1,8 +1,8 @@
 .view {
   left: 50%;
-  top: 40vh;
+  top: 60vh;
   position: absolute;
-  transform: translate(-50%, -40%);
+  transform: translate(-50%, -60%);
 
   &-tips-title {
     line-height: 30px;
@@ -14,10 +14,12 @@
   }
 
   &-card {
+    width: 500px;
     display: flex;
-    padding-top: 32px;
-    //align-items: center;
+    flex-wrap: wrap;
+    padding-top: 20px;
     align-items: stretch;
+    justify-content: space-between;
 
     &-icon {
       font-size: 30px;
@@ -33,10 +35,12 @@
     /deep/
     .el-card {
       border: none;
+      margin-bottom: 20px;
     }
+  }
 
-    .el-card + .el-card {
-      margin-left: 16px;
-    }
+  &-footer {
+    display: flex;
+    justify-content: space-between;
   }
 }

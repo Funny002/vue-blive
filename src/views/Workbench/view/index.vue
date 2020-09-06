@@ -17,6 +17,10 @@
         </div>
       </el-card>
     </div>
+    <h4 class="view-footer">
+      <span>{{ vuex.Copyright }}</span>
+      <span>{{ vuex.Version }}</span>
+    </h4>
   </div>
 </template>
 
@@ -25,6 +29,7 @@ export default {
   name: "workbench-view",
   data: function () {
     return {
+      vuex: {},
       card: {
         list: [
           {lang: {title: "card.edit", msg: "msg.edit"}, icon: "edit-outline"},
@@ -39,6 +44,8 @@ export default {
     //
   },
   mounted() {
+    const {getVersion: Version, getCopyright: Copyright} = this.$store.getters
+    this.vuex = {Version, Copyright}
     this.$nextTick(() => {
       this.$emit('menuShow', false)
     })

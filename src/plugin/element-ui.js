@@ -10,7 +10,7 @@ import {Alert, Aside, Autocomplete, Avatar, Backtop, Badge, Breadcrumb, Breadcru
 const Element = (ElementUI, load = false) => load && Vue.use(ElementUI);
 
 Element(Avatar, true);
-Element(Dialog);
+Element(Dialog, true);
 Element(Autocomplete);
 Element(Dropdown, true);
 Element(Pagination, true);

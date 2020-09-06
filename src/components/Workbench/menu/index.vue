@@ -28,15 +28,17 @@
     <div class="menu-divider">
       <el-icon class="menu-divider-icon" name="more"/>
     </div>
+    <dialog-series ref="dialogSeries"/>
   </div>
 </template>
 
 <script>
+import dialogSeries from '../dialog/index.vue'
+
 export default {
   name: "workbench-menu",
-  props: {
-    show: Boolean,
-  },
+  props: {show: Boolean},
+  components: {'dialog-series': dialogSeries},
   data: function () {
     return {
       menu: {
@@ -64,7 +66,11 @@ export default {
   },
   methods: {
     menuListClick(name) {
-      this.$emit('listClick', name)
+      if (['dashboard', 'user'].includes(name)) {
+        console.log(name)
+      } else {
+        this.$refs.dialogSeries.init(name)
+      }
     }
   }
 }
