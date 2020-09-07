@@ -34,7 +34,7 @@ export default {
         list: [{
           title: "preview",
           value: [
-            {title: "axisX", key: ['alt', 'shift', 's']}
+            {title: "save", key: ['alt', 'shift', 's']}
           ]
         }, {
           title: "workbench",

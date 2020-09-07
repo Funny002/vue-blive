@@ -5,6 +5,7 @@
     "tutorials": "教程",
     "about": "关于Blive5",
     "contributor": "贡献者",
+    "tips": "简介生成器提供给 B站直播间生成简介使用，具有可视化修改功能。",
     "statement": {
       "msg_1": "从blive开始一人前行到现在众多贡献用户相伴，少不了他们的帮助，blive到现在还处于维护需感谢他们。",
       "msg_2": "少数愿无偿帮助blive可爱的人们(●'◡'●) —— 致敬"
@@ -24,6 +25,7 @@
     "tutorials": "tutorials",
     "contributor": "contributor",
     "devote": "outstanding contribution",
+    "tips": "The introduction generator is provided to generate introductions in the live broadcast room of station B, and has a visual modification function.",
     "statement": {
       "msg_1": "From the beginning of blive to the present, many contributing users are accompanied by their help, and blive is still under maintenance and we need to thank them.",
       "msg_2": "A small number of people who are willing to help blive's lovely people free of charge (●'◡'●)-tribute "

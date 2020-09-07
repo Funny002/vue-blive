@@ -19,8 +19,8 @@
       "zoom": "Zoom in/out",
       "save": "One-click save",
       "workbench": "workbench",
-      "axisX": "X axis movement",
-      "axisY": "Y axis movement",
+      "axisX": "X movement",
+      "axisY": "Y movement",
       "preview": "Quick preview",
       "selector": "Selector operation"
     }

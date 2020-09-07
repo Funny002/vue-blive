@@ -3,7 +3,7 @@
     <el-divider content-position="left"><h3>{{ $t('about') }}</h3></el-divider>
 
     <div style="text-align: left;">
-      <span>简介生成器提供给 B站直播间生成简介使用，具有可视化修改功能。</span>
+      <span>{{$t('tips')}}</span>
       <div style="margin-top: 10px;">
         <el-button size="medium" v-for="item in tipsList" :key="item.lang" @click="routerPush(item.path)">{{ $t(item.lang) }}</el-button>
       </div>
