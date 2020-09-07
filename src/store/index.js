@@ -9,7 +9,7 @@ export default new Vuex.Store({
         version: '0.0.1', // 版本
         author: "Re Funny", // 作者
         email: "2048412928@qq.com", // 邮箱
-        lang: localStorage.getItem('Lang') || this.$i18n.locale, // i18n
+        lang: localStorage.getItem('Lang') || 'zh', // i18n
     },
     getters: {
         getLang: state => {

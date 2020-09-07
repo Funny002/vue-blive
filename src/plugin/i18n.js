@@ -12,8 +12,14 @@ const messages = {
     en: Object.assign(enLang)
 }
 
+
+const lang = localStorage.getItem('Lang')
+if (!lang) {
+    localStorage.setItem('Lang', 'zh')
+}
+
 export const i18n = new VueI18n({
-    locale: localStorage.getItem('Lang') || 'zh', // 默认语言
+    locale: lang || 'zh', // 默认语言
     // formatFallbackMessages: true,
     silentTranslationWarn: true, // i18n单文件必须
     fallbackLocale: 'en', // 回退
