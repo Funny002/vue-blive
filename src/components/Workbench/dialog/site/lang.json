@@ -1,8 +1,10 @@
 {
   "zh": {
+    "home": "首页",
     "langSite": "语言设置"
   },
   "en": {
+    "home": "home",
     "langSite": "Language"
   }
 }
