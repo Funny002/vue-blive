@@ -16,7 +16,7 @@
           <lang-module/>
         </div>
       </div>
-      <component v-for="item in componentList" :key="item.name" :is="item" @menuCallback="menuCallback"/>
+      <component v-for="(item,key) in componentList" :key="key" :is="item" @menuCallback="menuCallback"/>
     </div>
   </div>
 </template>
