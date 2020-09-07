@@ -9,6 +9,7 @@
         </div>
         <div class="card-notKey-list" v-for="(item,key) in card.value" :key="key">
           <div class="card-notKey-title">{{ $t('card.' + item.title) }}</div>
+          <span style="margin: auto;"/>
           <div class="card-notKey-key">
             <div v-for="notKey of item.key" :key="notKey">
               <el-tag v-if="notKey === 'wheel'">{{ $t('wheel') }}</el-tag>
