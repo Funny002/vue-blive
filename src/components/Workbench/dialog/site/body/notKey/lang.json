@@ -1,0 +1,28 @@
+{
+  "zh": {
+    "notKey": "快捷键",
+    "wheel": "鼠标滚轮",
+    "card": {
+      "save": "一键保存",
+      "axisX": "X轴移动",
+      "axisY": "X轴移动",
+      "zoom": "放大/缩小",
+      "preview": "快捷预览",
+      "workbench": "工作台",
+      "selector": "选择器操作"
+    }
+  },
+  "en": {
+    "wheel": "Mouse wheel",
+    "notKey": "not Key",
+    "card": {
+      "zoom": "Zoom in/out",
+      "save": "One-click save",
+      "workbench": "workbench",
+      "axisX": "X axis movement",
+      "axisY": "Y axis movement",
+      "preview": "Quick preview",
+      "selector": "Selector operation"
+    }
+  }
+}

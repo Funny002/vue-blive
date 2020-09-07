@@ -1,6 +1,6 @@
 <template>
-  <div class="workbench-site">
-    <div class="workbench-site-menu">
+  <div class="workbench-site" ref="site">
+    <div class="workbench-site-menu" :style="{'max-height': maxHeight + 'px'}">
       <div class="menu-list"
            :key="item.lang"
            v-for="item in menu.list"
@@ -8,12 +8,11 @@
       >
         <div :class="{'menu-list-menu':item.isMenu}" @click="listClick(item)">{{ $t(item.lang) }}</div>
       </div>
-
     </div>
-    <div class="workbench-site-body">
-      <div class="workbench-site-home" style="display: flex; align-items: center;">
+    <div class="workbench-site-body" :style="{'max-height': maxHeight + 'px'}">
+      <div class="card-block" style="display: flex; align-items: center;">
         <h3 style="margin-right: auto;">{{ $t('langSite') }}</h3>
-        <div>
+        <div class="workbench-site-btn">
           <lang-module/>
         </div>
       </div>
@@ -30,7 +29,9 @@ export default {
   name: "workbench-menu-site",
   data: function () {
     return {
-      viewList: ['home'],
+      maxHeight: 0,
+      // viewList: ['home', 'account', 'expand', 'news', 'view', 'notKey', 'about'],
+      viewList: ['home', 'expand', 'view', 'notKey', 'about'],
       componentList: [],
       menu: {
         key: null,
@@ -64,17 +65,23 @@ export default {
   },
   mounted() {
     // 获取需要加载的列表
-    const viewList = [this.viewList]
-    for (const valPath of viewList) {
+    for (const valPath of this.viewList) {
       // 填充至 模板列表
       this.componentList.push(() => import(/* webpackChunkName: "WorkbenchDialog" */  `./body/${valPath}/index.vue`))
     }
+    this.$nextTick(() => {
+      this.maxHeight = document.documentElement['clientHeight'] - 160
+      window.onresize = () => {
+        this.maxHeight = document.documentElement['clientHeight'] - 160
+      }
+    })
   }
 }
 </script>
 
 <style lang="less" scoped>
 @import "./index.less";
+
 </style>
 
 <i18n src="./lang.json"/>

@@ -4,6 +4,7 @@
     "home": "首页",
     "donate": "捐赠",
     "project": "项目",
+    "workbench": "工作台",
     "search": "输入关键字搜索"
   },
   "en": {
@@ -11,6 +12,7 @@
     "home": "home",
     "donate": "donate",
     "project": "project",
+    "workbench": "workbench",
     "search": "Keyword search"
   }
 }

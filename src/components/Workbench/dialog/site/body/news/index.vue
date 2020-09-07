@@ -1,16 +1,17 @@
 <template>
-  <div class="site-home">
-    <!--    <el-divider content-position="left"><h3>{{ $t('home') }}</h3></el-divider>-->
+  <div class="site-news">
+    <el-divider content-position="left"><h3>{{ $t('news') }}</h3></el-divider>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: "site-home",
+  name: "site-news",
   mounted() {
     this.$nextTick(() => {
       const menuData = [
-        {isMenu: false, name: 'home', lang: 'home'},
+        {isMenu: false, name: 'news', lang: 'news'},
       ]
       this.$emit('menuCallback', menuData)
     })

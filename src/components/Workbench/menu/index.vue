@@ -67,7 +67,8 @@ export default {
   methods: {
     menuListClick(name) {
       if (['dashboard', 'user'].includes(name)) {
-        console.log(name)
+        // 跳转到仪表盘
+        name === 'dashboard' && this.$router.push({path: "/dashboard"})
       } else {
         this.$refs.dialogSeries.init(name)
       }

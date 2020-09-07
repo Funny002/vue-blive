@@ -6,6 +6,7 @@
   &-menu,
   &-body {
     overflow-y: auto;
+    box-sizing: border-box;
   }
 
   &-menu {
@@ -17,36 +18,29 @@
 
   &-body {
     padding: 32px;
+    overflow-y: auto;
     width: calc(100% - 200px);
     background-color: #f2f2f2;
     border-left: 1px solid #ddd;
   }
 
-  &-home {
-    padding: 16px;
-    background-color: #fff;
+  &-btn {
+    height: 38px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
 
-    > div {
-      height: 38px;
-      border-radius: 4px;
-      border: 1px solid #ddd;
+    &:hover {
+      border: 1px solid #FF86B2;
+      background-color: #ffeaf3;
+    }
 
-      &:hover {
-        border: 1px solid #FF86B2;
-        background-color: #ffeaf3;
-      }
-
-      /deep/
-      .var-lang {
-        color: #FF86B2;
-      }
-
-      .el-dropdown {
-        height: 38px;
-      }
+    /deep/
+    .var-lang {
+      color: #FF86B2;
     }
   }
 }
+
 
 .menu-list {
   position: relative;
@@ -95,3 +89,82 @@
   }
 }
 
+/deep/
+.el-divider__text {
+  background-color: #f2f2f2;
+}
+
+/deep/
+.card {
+  &-block {
+    width: 100%;
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #fff;
+
+    > h3 {
+      margin-right: auto;
+    }
+
+    & + & {
+      margin-top: 32px;
+    }
+  }
+
+  &-transition .card-block + div {
+    width: 100%;
+  }
+
+
+  &-notKey {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .el-card {
+      width: 30%;
+      border: none;
+
+      &__header {
+        border-bottom: 1px solid #ddd;
+      }
+    }
+
+    &-list {
+      display: flex;
+      margin: 10px 0;
+      align-items: center;
+    }
+
+    &-title {
+      width: 100px;
+      text-align: left;
+    }
+
+    &-key {
+      display: flex;
+      align-items: center;
+
+      div + div {
+        margin-left: 20px;
+        position: relative;
+
+        &::before {
+          top: 50%;
+          right: 100%;
+          content: '+';
+          position: absolute;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}
+
+.site-about {
+  .el-table {
+    background: none;
+  }
+}

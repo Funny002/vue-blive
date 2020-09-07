@@ -29,6 +29,7 @@ export default {
         {path: "/about", lang: "me"},
         {path: "/project", lang: "project"},
         {path: "/donate", lang: "donate"},
+        {path: "/workbench", lang: "workbench"}
       ]
     }
   },
