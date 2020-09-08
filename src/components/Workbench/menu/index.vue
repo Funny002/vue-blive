@@ -68,7 +68,7 @@ export default {
     menuListClick(name) {
       if (['dashboard', 'user', 'release', 'gallery', 'history', 'pagination', 'help'].includes(name)) {
         // 跳转到仪表盘
-        name === 'dashboard' && this.$router.push({path: "/dashboard"})
+        // name === 'dashboard' && this.$router.push({path: "/dashboard"})
         this.$message({
           message: `${this.$t(name)},功能正在施工中......`,
           type: 'warning'
