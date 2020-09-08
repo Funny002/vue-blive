@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         isBeta: true, // 是否 Beta 版
-        version: '0.0.1', // 版本
+        version: '0.0.2', // 版本
         author: "Re Funny", // 作者
         email: "2048412928@qq.com", // 邮箱
         lang: localStorage.getItem('Lang') || 'zh', // i18n
