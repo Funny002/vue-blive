@@ -41,54 +41,6 @@
   }
 }
 
-
-.menu-list {
-  position: relative;
-
-  > div {
-    height: 30px;
-    margin: 5px 0;
-    color: #2c3e50;
-    cursor: pointer;
-    font-weight: 500;
-    text-align: left;
-    line-height: 30px;
-    position: relative;
-    padding: 5px 4px 5px 32px;
-
-    &:hover {
-      color: #FF6AA1;
-    }
-
-    &::before {
-      top: 0;
-      right: 0;
-      content: '';
-      height: 100%;
-      position: absolute;
-      transform: rotateX(90deg);
-      transition: transform .1s;
-      border-left: 4px solid #FF86B2;
-    }
-  }
-
-  &-active > div {
-    color: #FF6AA1;
-    background-color: #FFE4EE;
-
-    &::before {
-      transform: rotateX(0deg);
-    }
-  }
-
-  & > &-menu {
-    margin: 0;
-    cursor: default;
-    padding-left: 20px;
-    color: #8c939d !important;
-  }
-}
-
 /deep/
 .el-divider__text {
   background-color: #f2f2f2;

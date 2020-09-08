@@ -1,0 +1,141 @@
+.workbench-template {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: #f2f2f2;
+
+  &-menu,
+  &-body {
+    overflow-y: auto;
+  }
+
+  &-menu {
+    width: 200px;
+    background-color: #fff;
+  }
+
+  &-body {
+    padding: 32px;
+    box-sizing: border-box;
+    width: calc(100% - 200px);
+    border-left: 1px solid #ddd;
+
+    /deep/
+    .el-alert {
+      border: 1px solid #F7AE41;
+    }
+  }
+}
+
+.template-body-top {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  &-div {
+    width: 100%;
+    display: flex;
+    padding-bottom: 16px;
+    flex-direction: column;
+
+    > i {
+      font-size: 60px;
+      padding-bottom: 16px;
+    }
+
+    > h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    > span {
+      font-size: 18px;
+    }
+  }
+
+  /deep/
+  .el-button {
+    margin-bottom: 20px;
+    width: calc(50% - 10px);
+
+    & + .el-button {
+      margin-left: 0;
+    }
+  }
+}
+
+.template-filter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  /deep/
+  .el-checkbox {
+    margin: 0;
+    width: 100%;
+    text-align: left;
+    padding-top: 5px;
+    padding-left: 30px;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+
+    &:hover {
+      color: #FF86B2;
+    }
+  }
+}
+
+.template {
+  &-list {
+    width: 100%;
+    padding-top: 32px;
+
+    /deep/
+    .el-divider__text {
+      background-color: #f2f2f2;
+    }
+  }
+
+  &-card {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 16px;
+    margin-left: 10px;
+
+    &-list {
+      float: left;
+      min-width: 200px;
+      margin-right: 20px;
+      margin-bottom: 20px;
+      border-color: #dedede;
+      box-sizing: border-box;
+      width: calc(25% - 20px);
+
+
+      /deep/
+      .el-image {
+        width: 100%;
+        display: block;
+        min-height: 150px;
+        position: relative;
+        background-color: #f0f2f6;
+
+        .image-slot {
+          top: 50%;
+          left: 50%;
+          color: #b5b5b5;
+          font-size: 30px;
+          position: absolute;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+    }
+
+    &-div {
+      padding: 16px;
+    }
+  }
+}
