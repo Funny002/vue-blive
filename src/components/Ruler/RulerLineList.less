@@ -1,0 +1,28 @@
+.RulerLineList {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-width: 0;
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+
+  &-top {
+    height: 0;
+    cursor: row-resize;
+    border-top-width: 1px;
+  }
+
+  &-left {
+    width: 0;
+    cursor: col-resize;
+    border-left-width: 1px;
+  }
+
+  &:hover {
+    z-index: 100;
+    border-color: #FF86B2;
+  }
+}

@@ -17,4 +17,30 @@
     position: absolute;
     background-color: rgba(169, 169, 169, 0.7);
   }
+
+  &-body {
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+
+    &-small {
+      margin-top: 16px;
+      margin-left: 16px;
+      width: calc(100% - 16px);
+      height: calc(100% - 16px);
+      padding-top: calc(150px - 16px);
+      padding-left: calc(150px - 16px);
+    }
+
+    &-normal {
+      margin-top: 25px;
+      margin-left: 25px;
+      width: calc(100% - 25px);
+      height: calc(100% - 25px);
+      padding-top: calc(150px - 25px);
+      padding-left: calc(150px - 25px);
+    }
+  }
 }
