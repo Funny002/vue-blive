@@ -10,7 +10,7 @@
     <template slot="title">
       <h2 class="workbench-dialog-title">{{ $t(dialogName) }}</h2>
     </template>
-    <component :is="component"/>
+    <component :is="component" @dialogClose="show = !show"/>
   </el-dialog>
 </template>
 

@@ -9,7 +9,7 @@
 
     <div class="card-block">
       <h3>{{ $t('backdrop') }}</h3>
-      <el-switch v-model="backdrop"/>
+      <el-switch v-model="backdrop" disabled/>
     </div>
 
   </div>
@@ -23,7 +23,7 @@ export default {
   data: function () {
     return {
       ruler: false,
-      backdrop: true
+      backdrop: false
     }
   },
   computed: {

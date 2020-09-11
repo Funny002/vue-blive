@@ -1,11 +1,13 @@
 export default {
     namespaced: true,
     state: () => ({
-        show: localStorage.getItem('Ruler') && localStorage.getItem('Ruler') !== 'false'
+        mobile: {top: 0, left: 0},
+        show: localStorage.getItem('Ruler') && localStorage.getItem('Ruler') !== 'false',
     }),
     getters: {
         // 获取标尺是否显示
         getShow: state => state.show,
+        getMobile: state => state.mobile,
     },
     mutations: {
         // 设置是否显示

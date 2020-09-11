@@ -36,8 +36,6 @@
         </el-button>
       </div>
       <el-alert type="warning" show-icon :title="$t('templateTips')" :closable="false"/>
-
-
       <div class="template-list" v-for="(template,key) in templateList" :key="key">
         <el-divider content-position="left">
           <h2>{{ $t(template.h2) }}</h2>
@@ -45,22 +43,22 @@
         </el-divider>
         <div class="template-card">
           <el-card class="template-card-list" :body-style="{ padding: '0px' }" v-for="(card,cardKey) in template.cardList" :key="cardKey" shadow="hover">
-            <el-image>
-              <div slot="error" class="image-slot">
-                <i class="el-icon-picture-outline"></i>
-              </div>
-            </el-image>
-            <div class="template-card-div">
-              <h3 style="text-align: left;">{{ $t(card.title) }}</h3>
-              <div style="display: flex; flex-wrap: wrap;">
-                <el-tag v-for="(tag,tagKey) in card.tags" :key="tagKey" :type="tag.type" style="margin-top: 10px; margin-right: 10px;">{{ $t(tag.lang) }}</el-tag>
+            <div @click="templateCardClick(card)">
+              <el-image>
+                <div slot="error" class="image-slot">
+                  <i class="el-icon-picture-outline"></i>
+                </div>
+              </el-image>
+              <div class="template-card-div">
+                <h3 style="text-align: left;">{{ $t(card.title) }}</h3>
+                <div style="display: flex; flex-wrap: wrap;">
+                  <el-tag v-for="(tag,tagKey) in card.tags" :key="tagKey" :type="tag.type" style="margin-top: 10px; margin-right: 10px;">{{ $t(tag.lang) }}</el-tag>
+                </div>
               </div>
             </div>
           </el-card>
         </div>
       </div>
-
-
     </div>
   </div>
 </template>
@@ -90,17 +88,21 @@ export default {
         h2: "测试模板",
         span: "",
         cardList: [
-          {title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
-          {title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
-          {title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
-          {title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
-          {title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
-          {title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
+          {uuid: 'yuajo-njb-vrtb-nmkmn-jbhgvfrty', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
+          {uuid: 'yuajo-njb-vrtb-nmkmn-jbhgvfrty', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
+          {uuid: 'yuajo-njb-vrtb-nmkmn-jbhgvfrty', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
+          {uuid: 'yuajo-njb-vrtb-nmkmn-jbhgvfrty', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
+          {uuid: 'yuajo-njb-vrtb-nmkmn-jbhgvfrty', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
+          {uuid: 'yuajo-njb-vrtb-nmkmn-jbhgvfrty', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
         ]
       }]
     }
   },
   methods: {
+    templateCardClick({uuid}) {
+      this.$emit('dialogClose');
+      this.$router.push({path: `/workbench/editor/${uuid}`});
+    },
     updateBtnClick() {
       //
     },

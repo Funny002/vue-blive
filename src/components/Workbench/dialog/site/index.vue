@@ -30,16 +30,9 @@ export default {
   data: function () {
     return {
       maxHeight: 0,
-      // viewList: ['home', 'account', 'expand', 'news', 'view', 'notKey', 'about'],
+      componentList: {},
+      menu: {key: null, list: []},
       viewList: ['home', 'expand', 'view', 'notKey', 'about'],
-      componentList: [],
-      menu: {
-        key: null,
-        list: [
-          // {isMenu: true, lang: 'home'},
-          // {isMenu: false, lang: 'asdasd', path: 'asda'},
-        ]
-      }
     }
   },
   methods: {
@@ -58,16 +51,15 @@ export default {
     listClick({name, isMenu}) {
       if (!isMenu) {
         this.menu.key = name
+        this.$el.querySelector(`.site-${name}`).scrollIntoView()
       }
-      // document.querySelector("#header").scrollIntoView(true);
-      // console.log(path)
     }
   },
   mounted() {
     // 获取需要加载的列表
     for (const valPath of this.viewList) {
       // 填充至 模板列表
-      this.componentList.push(() => import(/* webpackChunkName: "WorkbenchDialog" */  `./body/${valPath}/index.vue`))
+      this.componentList[valPath] = () => import(/* webpackChunkName: "WorkbenchDialog" */  `./body/${valPath}/index.vue`)
     }
     this.$nextTick(() => {
       this.maxHeight = document.documentElement['clientHeight'] - 160

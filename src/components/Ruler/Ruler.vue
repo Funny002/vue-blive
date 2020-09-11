@@ -1,8 +1,8 @@
 <template>
-  <div ref="Ruler" :class="classes" @mouseup="RulerMouseup" :style="{'background-image': `url('${RulerBack}')`}">
+  <div ref="Ruler" class="Ruler" @mouseup="RulerMouseup" :style="{'background-image': `url('${RulerBack}')`}">
     <template v-if="isShow">
-      <ruler-item type="top" :mobile="RulerItem.mobile.top" @mousedown="RulerItemMousedown"/>
-      <ruler-item type="left" :mobile="RulerItem.mobile.left" @mousedown="RulerItemMousedown"/>
+      <ruler-item type="top" :mobile="getMobile.top" @mousedown="RulerItemMousedown"/>
+      <ruler-item type="left" :mobile="getMobile.left" @mousedown="RulerItemMousedown"/>
       <ruler-line @mouseup="RulerLineMouseup" :ruler-line="RulerLine.list" @mousedown="RulerLineMousedown"/>
     </template>
     <div class="Ruler-body">
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-const classes = 'Ruler'
 import {mapGetters} from 'vuex'
 import RulerItem from './RulerItem.vue'
 import RulerLine from './RulerLine.vue'
@@ -22,22 +21,14 @@ export default {
   components: {'ruler-item': RulerItem, 'ruler-line': RulerLine},
   data: function () {
     return {
-      RulerItem: {
-        mobile: {top: 0, left: 0},
-      },
       ClientRects: null, // 参考线距离纠正
       onMousemove: null, // window onmousemove方法保存
-      RulerLine: {list: [], key: null},
+      RulerLine: {list: [], key: null}, // 参考线
       RulerBack: require('../../assets/image/RulerBack.jpg')
     }
   },
   computed: {
-    ...mapGetters('Ruler', {
-      'isShow': "getShow",
-    }),
-    classes() {
-      return [classes]
-    }
+    ...mapGetters('Ruler', {'isShow': "getShow", 'getMobile': "getMobile"}),
   },
   methods: {
     RulerMouseup() {

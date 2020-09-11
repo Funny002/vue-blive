@@ -1,22 +1,28 @@
 <template>
-  <Ruler class="editor">
-    workbench-editor
+  <Ruler>
+    <div ref="editor" class="editor">
+      <component :is="template"/>
+    </div>
   </Ruler>
 </template>
 
 <script>
-import {getUuid} from "@/utils/uuid";
 import Ruler from "@/components/Ruler/Ruler";
 
 export default {
   name: "workbench-editor",
   components: {Ruler},
   props: ['uuid'],
+  data: function () {
+    return {
+      template: null,
+    }
+  },
   methods: {
     //
   },
   mounted() {
-    console.log(getUuid())
+    !this.uuid && this.$router.push('/workbench')
     this.$nextTick(() => {
       this.$emit('menuShow', true)
     })
