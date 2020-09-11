@@ -1,9 +1,6 @@
 {
   "zh": {
-    "tips": {
-      "title": "从触摸 {icon} 开始您的第一个简介",
-      "msg": "把目光移动到左侧, 紧贴游览器左侧, 看到了吗."
-    },
+    "tips": "从现在开始定制你的第一个Blive简介",
     "card": {
       "edit": "创建空白文件",
       "add": "导入文件",
@@ -18,10 +15,7 @@
     }
   },
   "en": {
-    "tips": {
-      "title": "Touch {icon} Start your first introduction",
-      "msg": "Move your gaze to the left, close to the left side of the browser, see it."
-    },
+    "tips": "Customize your first Blive profile from now on",
     "card": {
       "edit": "Create blank file",
       "add": "Importing files",

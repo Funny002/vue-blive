@@ -1,12 +1,7 @@
 <template>
   <div class="view">
     <div class="view-tips">
-      <h2 class="view-tips-title">
-        <i18n path="tips.title">
-          <el-icon place="icon" name="files"/>
-        </i18n>
-      </h2>
-      <h3>{{ $t('tips.msg') }}</h3>
+      <h1>{{ $t('tips') }}</h1>
     </div>
     <div class="view-card">
       <el-card v-for="(item,key) in card.list" :key="key" shadow="hover">
@@ -46,9 +41,6 @@ export default {
   mounted() {
     const {getVersion: Version, getCopyright: Copyright} = this.$store.getters
     this.vuex = {Version, Copyright}
-    this.$nextTick(() => {
-      this.$emit('menuShow', false)
-    })
   }
 }
 </script>

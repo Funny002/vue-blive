@@ -46,4 +46,7 @@ export default [{
         name: "workbenchEditor",
         component: () => import(/* webpackChunkName: "Workbench" */ '../views/Workbench/editor/index.vue'),
     }]
+}, {
+    path: "/",
+    redirect: "/workbench/index",
 }]
