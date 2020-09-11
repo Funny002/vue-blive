@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  name: "footer"
+  name: "home-footer"
 }
 </script>

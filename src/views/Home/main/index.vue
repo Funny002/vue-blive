@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "index",
+  name: "home-index",
   data: function () {
     return {
       page: {

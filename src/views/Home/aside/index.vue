@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "aside"
+  name: "home-aside"
 }
 </script>
 

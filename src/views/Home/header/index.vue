@@ -20,7 +20,7 @@
 import LangModule from "@/components/Lang/index";
 
 export default {
-  name: "header",
+  name: "home-header",
   components: {LangModule},
   data: function () {
     return {
