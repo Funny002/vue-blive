@@ -1,26 +1,21 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Ruler from "@/store/Ruler";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    state: {
+    state: () => ({
         isBeta: true, // 是否 Beta 版
         version: '0.0.2', // 版本
         author: "Re Funny", // 作者
         email: "2048412928@qq.com", // 邮箱
         lang: localStorage.getItem('Lang') || 'zh', // i18n
-    },
+    }),
     getters: {
-        getLang: state => {
-            return state.lang
-        },
-        getVersion: ({version, isBeta}) => {
-            return `Version: ${version}${isBeta ? ' Beta' : ''}`
-        },
-        getCopyright: ({author}) => {
-            return `Copyright © ${new Date().getFullYear()} ${author} . All Rights Reserved`
-        }
+        getLang: state => state.lang,
+        getVersion: ({version, isBeta}) => `Version: ${version}${isBeta ? ' Beta' : ''}`,
+        getCopyright: ({author}) => `Copyright © ${new Date().getFullYear()} ${author} . All Rights Reserved`,
     },
     mutations: {
         setLang(state, lang) {
@@ -29,5 +24,7 @@ export default new Vuex.Store({
         }
     },
     actions: {},
-    modules: {}
+    modules: {
+        Ruler: Ruler, // 标尺
+    }
 })

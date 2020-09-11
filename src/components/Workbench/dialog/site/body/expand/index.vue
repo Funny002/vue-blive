@@ -4,7 +4,7 @@
 
     <div class="card-block">
       <h3>{{ $t('ruler') }}</h3>
-      <el-switch v-model="ruler"/>
+      <el-switch :value="getRulerShow" @change="rulerChange"/>
     </div>
 
     <div class="card-block">
@@ -16,13 +16,24 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 
 export default {
   name: "site-expand",
   data: function () {
     return {
-      ruler: true,
+      ruler: false,
       backdrop: true
+    }
+  },
+  computed: {
+    ...mapGetters('Ruler', {
+      'getRulerShow': "getShow",
+    })
+  },
+  methods: {
+    rulerChange(status) {
+      this.$store.commit('Ruler/setShow', status)
     }
   },
   mounted() {

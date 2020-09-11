@@ -1,44 +1,42 @@
 <template>
   <div ref="Ruler" :class="classes" @mouseup="RulerMouseup" :style="{'background-image': `url('${RulerBack}')`}">
-    <ruler-item type="top" :mobile="RulerItem.mobile.top" @mousedown="RulerItemMousedown"/>
-    <ruler-item type="left" :mobile="RulerItem.mobile.left" @mousedown="RulerItemMousedown"/>
-    <ruler-line @mouseup="RulerLineMouseup" :ruler-line="RulerLine.list" @mousedown="RulerLineMousedown"/>
-    <div :class="classesBody">
+    <template v-if="isShow">
+      <ruler-item type="top" :mobile="RulerItem.mobile.top" @mousedown="RulerItemMousedown"/>
+      <ruler-item type="left" :mobile="RulerItem.mobile.left" @mousedown="RulerItemMousedown"/>
+      <ruler-line @mouseup="RulerLineMouseup" :ruler-line="RulerLine.list" @mousedown="RulerLineMousedown"/>
+    </template>
+    <div class="Ruler-body">
       <slot/>
     </div>
   </div>
 </template>
 
 <script>
+const classes = 'Ruler'
+import {mapGetters} from 'vuex'
 import RulerItem from './RulerItem.vue'
 import RulerLine from './RulerLine.vue'
 
-const classes = 'Ruler'
 export default {
   name: "Ruler",
   components: {'ruler-item': RulerItem, 'ruler-line': RulerLine},
   data: function () {
     return {
-      Ruler: {
-        show: false,
-      },
       RulerItem: {
         mobile: {top: 0, left: 0},
       },
-      isSmall: true,
-      ClientRects: null,
-      onMousemove: null,
+      ClientRects: null, // 参考线距离纠正
+      onMousemove: null, // window onmousemove方法保存
       RulerLine: {list: [], key: null},
       RulerBack: require('../../assets/image/RulerBack.jpg')
     }
   },
   computed: {
+    ...mapGetters('Ruler', {
+      'isShow': "getShow",
+    }),
     classes() {
       return [classes]
-    },
-    classesBody() {
-      const isSmall = this.isSmall ? 'small' : 'normal'
-      return [`${classes}-body`, `${classes}-body-${isSmall}`]
     }
   },
   methods: {
@@ -107,27 +105,13 @@ export default {
   &-body {
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     position: relative;
+    padding-top: 150px;
+    padding-left: 150px;
     box-sizing: border-box;
-
-    &-small {
-      margin-top: 16px;
-      margin-left: 16px;
-      width: calc(100% - 16px);
-      height: calc(100% - 16px);
-      padding-top: calc(150px - 16px);
-      padding-left: calc(150px - 16px);
-    }
-
-    &-normal {
-      margin-top: 25px;
-      margin-left: 25px;
-      width: calc(100% - 25px);
-      height: calc(100% - 25px);
-      padding-top: calc(150px - 25px);
-      padding-left: calc(150px - 25px);
-    }
   }
 }
 </style>
