@@ -88,12 +88,13 @@ export default {
         h2: "测试模板",
         span: "",
         cardList: [
-          {uuid: 'yuajo-njb-vrtb-nmkmn-jbhgvfrty', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
-          {uuid: 'yuajo-njb-vrtb-nmkmn-jbhgvfrty', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
-          {uuid: 'yuajo-njb-vrtb-nmkmn-jbhgvfrty', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
-          {uuid: 'yuajo-njb-vrtb-nmkmn-jbhgvfrty', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
-          {uuid: 'yuajo-njb-vrtb-nmkmn-jbhgvfrty', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
-          {uuid: 'yuajo-njb-vrtb-nmkmn-jbhgvfrty', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
+            //  5-4-3-5
+          {uuid: 'xaaag-asda-asd-asdqw', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
+          {uuid: 'xaaag-asda-asd-asdqw', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
+          {uuid: 'xaaag-asda-asd-asdqw', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
+          {uuid: 'xaaag-asda-asd-asdqw', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
+          {uuid: 'xaaag-asda-asd-asdqw', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
+          {uuid: 'xaaag-asda-asd-asdqw', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
         ]
       }]
     }

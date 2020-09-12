@@ -37,7 +37,8 @@ export default [{
     redirect: "/workbench/index",
     component: () => import(/* webpackChunkName: "Workbench" */ '../views/Workbench/index.vue'),
     children: [{
-        path: "index",
+        props: true,
+        path: "index/:error?",
         name: "workbenchView",
         component: () => import(/* webpackChunkName: "Workbench" */ '../views/Workbench/view/index.vue'),
     }, {

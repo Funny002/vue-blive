@@ -1,7 +1,7 @@
-/** uuid 格式
+/** 生成 uuid 格式 缓存模板用 5-4-3-5
  * @type {string}
  */
-let uuid = 'xxxxx-xxxx-xxx-xxx-xxxxx'
+let uuid = 'xxxxx-xxxx-xxx-xxxxx'
 
 /** 生成一个 uuid
  * @returns {string}

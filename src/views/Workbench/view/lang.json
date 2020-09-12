@@ -1,5 +1,6 @@
 {
   "zh": {
+    "errorTips": "抱歉, 系统无法读取简介ID, 它可能已经不存在了。",
     "tips": "从现在开始定制你的第一个Blive简介",
     "card": {
       "edit": "创建空白文件",
@@ -15,6 +16,7 @@
     }
   },
   "en": {
+    "errorTips": "Sorry, the system cannot read the profile ID, it may no longer exist.",
     "tips": "Customize your first Blive profile from now on",
     "card": {
       "edit": "Create blank file",
