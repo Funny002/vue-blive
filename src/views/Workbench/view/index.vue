@@ -54,15 +54,12 @@ export default {
   },
   methods: {
     new_Template() {
-      // const uuid =
-      newTemplate(this).then((...data) => {
-        console.log(data)
+      newTemplate(this).then((uuid) => {
+        uuid && this.$router.push({path: '/workbench/editor/' + uuid})
+      }).catch((e) => {
+        this.$message.error('系统创建空白文件失败，请联系管理员。');
+        console.error(e)
       })
-      // if (uuid) {
-      //   this.$router.push({path: templatePath + uuid})
-      // } else {
-      //   this.$message.error('系统创建空白文件随便，请联系管理员。');
-      // }
     },
     file_Template() {
 

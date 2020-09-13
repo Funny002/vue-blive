@@ -1,1 +1,12 @@
-{}
+{
+  "zh": {
+    "autoSave": "自动保存",
+    "clock": "保存时钟",
+    "clockTips": "即多久保存一次的时间 (分)"
+  },
+  "en": {
+    "autoSave": "auto save",
+    "clock": "save clock",
+    "clockTips": "How long is the storage time (minutes)"
+  }
+}

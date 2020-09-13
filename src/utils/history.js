@@ -1,28 +1,13 @@
 /** 加载缓存
- * @returns {{}}
- * @constructor
+ * @returns {any}
  */
 
-const History = () => {
-    let valueList = {};
-    const template = JSON.parse(localStorage.getItem('template'));
-    for (const key in template) {
-        valueList[key] = ((value) => {
-            let list = []
-            for (const {val, time} of value) {
-                list[time] = val
-            }
-            return list
-        })(template[key])
-    }
-    return valueList
-}
+const loadCache = () => JSON.parse(localStorage.getItem('template'));
 
 /** 更新缓存
- * @param template
  * @returns {boolean}
  */
-const setHistory = template => {
+const updateCache = () => {
     try {
         localStorage.setItem('template', JSON.stringify(template))
         return true
@@ -32,57 +17,77 @@ const setHistory = template => {
     }
 }
 
-/**
- * @returns {{getHistory: getHistory, delHistory: (function(*): void), addHistory: (function(*, *): void), listHistory: (function(): {})}}
+/** 模板缓存
+ * @type {*}
  */
-export default (function () {
-    let template = History()
+let template = loadCache() || {};
 
-    /** 获取全部 template
-     * @returns {{}}
-     */
-    const listHistory = () => template;
+/** 缓存解耦
+ * @param data
+ * @returns {[]}
+ */
+const extract = (data) => {
+    let valueList = [];
+    for (const value of data) valueList.push(value);
+    return valueList
+}
+/** 获取全缓存
+ * @returns {*}
+ */
+export const listHistory = () => template
 
-    /** 判断缓存 uuid 是否存在
-     * @param uuid
-     * @returns {boolean}
-     */
-    const hasHistory = (uuid) => {
-        return !!template[uuid]
-    }
-
-    /** 获取指定 template
-     * @param uuid
-     * @returns {boolean|*}
-     */
-    const getHistory = (uuid) => {
-        if (template[uuid]) {
-            // 返回最新的
-            return template[uuid][template[uuid].length]
+/** 获取缓存 (0:最新的缓存，1:全部缓存，number:指定缓存)
+ * @param uuid
+ * @param isAll
+ * @returns {*}
+ */
+export const getHistory = (uuid, isAll = 0) => {
+    try {
+        let value = template[uuid]
+        if (isAll === 0) {
+            // 获取最新的缓存
+            value = extract(value).pop().value
+        } else if (!isNaN(isAll)) {
+            // 获取指定缓存
+            value = value[isAll]
         }
+        return value
+    } catch (e) {
+        console.error(e)
         return false
     }
+}
 
-    /** 添加到缓存
-     * @param uuid
-     * @param value
-     */
-    const addHistory = (uuid, value) => {
-        if (!template[uuid]) {
-            template[uuid] = [{time: new Date().getTime(), value}]
-        } else {
-            template[uuid].push({time: new Date().getTime(), value})
+/** 判断缓存是否存在
+ * @param uuid
+ * @returns {boolean}
+ */
+export const hasHistory = (uuid) => {
+    return !!template[uuid]
+}
+
+/** 添加缓存
+ * @param uuid
+ * @param value
+ */
+export const addHistory = (uuid, value) => {
+    template[uuid] = [{time: new Date().getTime(), value}]
+    // console.log('addHistory :>> %s -> data:', uuid, template)
+    return updateCache() || uuid
+}
+
+/** 删除缓存 (0:全部的，number:指定的缓存)
+ * @param uuid
+ * @param isAll
+ */
+export const delHistory = (uuid, isAll = 0) => {
+    if (template[uuid]) {
+        if (isAll === 0) {
+            delete template[uuid]
+        } else if (!isNaN(isAll)) {
+            delete template[uuid][isAll]
         }
-        return setHistory(template)
+        return updateCache()
     }
-
-    /** 删除缓存
-     * @param uuid
-     */
-    const delHistory = (uuid) => {
-        // 直接删除包括之前的缓存
-        delete template[uuid]
-        return setHistory(template)
-    }
-    return {getHistory, listHistory, delHistory, addHistory, hasHistory}
-})()
+    return false
+}

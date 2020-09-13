@@ -25,6 +25,18 @@
 //     callback(parent);
 // }
 
+/** 创建一个 dom 元素
+ * @param tag
+ * @param style
+ * @param value
+ * @returns HTMLDocument
+ */
+const createElement = ({tag, style, value}) => {
+    const dom = document.createElement(tag)
+    dom.innerText = value
+    dom.style = style
+    return dom
+}
 
 // html(dom) 转换成 json
 export const changeJson = (html) => {
@@ -32,8 +44,38 @@ export const changeJson = (html) => {
     return html
 }
 
-// json 转换成 html(dom)
-export const changeHtml = (json) => {
-    console.log('changeHtml', json)
-    return json
+/** 创建 dom 树
+ * @param dataList
+ * @returns {[]}
+ */
+const recursionNode = (dataList) => {
+    if (!dataList) return []
+    let nodeList = [] // 节点列表
+    for (const {tag, style, value, childList} of dataList) {
+        const dom = createElement({tag, style, value})// 当前主节点的 n子节点
+        const domList = recursionNode(childList)
+        // 吧子节点添加到主节点中
+        while (domList.length) {
+            dom.append(domList.pop())
+        }
+        // 主节点添加到列表
+        nodeList.push(dom)
+    }
+    return nodeList
+}
+
+/** json 转换成 html（dom）
+ * @param tag
+ * @param style
+ * @param value
+ * @param childList
+ * @returns {HTMLDocument}
+ */
+export const changeHtml = ({tag, style, value, childList}) => {
+    const dom = createElement({tag, style, value}); // 主节点
+    const nodeList = recursionNode(childList)
+    while (nodeList.length) {
+        dom.append(nodeList.pop())
+    }
+    return dom
 }

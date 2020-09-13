@@ -22,7 +22,7 @@ Element(Menu, true);
 Element(MenuItem, true);
 Element(MenuItemGroup);
 Element(Input, true);
-Element(InputNumber);
+Element(InputNumber, true);
 Element(Radio, true);
 Element(RadioGroup, true);
 Element(RadioButton);

@@ -30,6 +30,7 @@
     position: relative;
     flex: 1 1 auto;
     padding: 0;
+    background-color: #F2F2F2;
   }
 }
 
@@ -81,3 +82,70 @@
   }
 }
 
+/deep/
+.card {
+  &-block {
+    width: 100%;
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #fff;
+
+    > h3 {
+      margin-right: auto;
+    }
+
+    & + & {
+      margin-top: 32px;
+    }
+  }
+
+  &-transition .card-block + div {
+    width: 100%;
+  }
+
+
+  &-notKey {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .el-card {
+      width: 30%;
+      border: none;
+
+      &__header {
+        border-bottom: 1px solid #ddd;
+      }
+    }
+
+    &-list {
+      display: flex;
+      margin: 10px 0;
+      align-items: center;
+    }
+
+    &-title {
+      text-align: left;
+    }
+
+    &-key {
+      display: flex;
+      align-items: center;
+
+      div + div {
+        margin-left: 20px;
+        position: relative;
+
+        &::before {
+          top: 50%;
+          right: 100%;
+          content: '+';
+          position: absolute;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}

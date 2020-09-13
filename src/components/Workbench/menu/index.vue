@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     menuListClick(name) {
-      if (['dashboard', 'user', 'release', 'gallery', 'history', 'pagination', 'help'].includes(name)) {
+      if (['dashboard', 'user', 'release', 'gallery', 'pagination', 'help'].includes(name)) {
         // 跳转到仪表盘
         // name === 'dashboard' && this.$router.push({path: "/dashboard"})
         this.$message({
