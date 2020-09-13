@@ -27,9 +27,14 @@ let template = loadCache() || {};
  * @returns {[]}
  */
 const extract = (data) => {
-    let valueList = [];
-    for (const value of data) valueList.push(value);
-    return valueList
+    try {
+        let valueList = [];
+        for (const value of data) valueList.push(value);
+        return valueList
+    } catch (e) {
+        console.warn('History :>> extract', e)
+        return []
+    }
 }
 /** 获取全缓存
  * @returns {*}
@@ -44,14 +49,17 @@ export const listHistory = () => template
 export const getHistory = (uuid, isAll = 0) => {
     try {
         let value = template[uuid]
-        if (isAll === 0) {
-            // 获取最新的缓存
-            value = extract(value).pop().value
-        } else if (!isNaN(isAll)) {
-            // 获取指定缓存
-            value = value[isAll]
+        if (value) {
+            if (isAll === 0) {
+                // 获取最新的缓存
+                value = extract(value).pop()
+            } else if (!isNaN(isAll)) {
+                // 获取指定缓存
+                value = value[isAll]
+            }
+            return value
         }
-        return value
+        return false
     } catch (e) {
         console.error(e)
         return false
@@ -66,16 +74,6 @@ export const hasHistory = (uuid) => {
     return !!template[uuid]
 }
 
-/** 添加缓存
- * @param uuid
- * @param value
- */
-export const addHistory = (uuid, value) => {
-    template[uuid] = [{time: new Date().getTime(), value}]
-    // console.log('addHistory :>> %s -> data:', uuid, template)
-    return updateCache() || uuid
-}
-
 /** 删除缓存 (0:全部的，number:指定的缓存)
  * @param uuid
  * @param isAll
@@ -85,9 +83,29 @@ export const delHistory = (uuid, isAll = 0) => {
         if (isAll === 0) {
             delete template[uuid]
         } else if (!isNaN(isAll)) {
-            delete template[uuid][isAll]
+            for (const key in template[uuid]) {
+                if (isAll === template[uuid][key].time) template[uuid].splice(key, 1);
+            }
         }
         return updateCache()
     }
     return false
+}
+
+/**  添加缓存
+ * @param uuid
+ * @param value
+ * @param time
+ * @returns {boolean|*}
+ */
+export const addHistory = (uuid, value, time = null) => {
+    // 判断 uuid 是否存在
+    const templateData = getHistory(uuid)
+    if (templateData) {
+        time && delHistory(uuid, time);
+        template[uuid].push({time: new Date().getTime(), value})
+    } else {
+        template[uuid] = [{time: new Date().getTime(), value}]
+    }
+    return updateCache() || uuid
 }

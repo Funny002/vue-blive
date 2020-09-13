@@ -1,46 +1,44 @@
 <template>
   <Ruler>
-    <div class="Blive" ref="BLive" v-html="bliveTemplate"/>
+    <div class="Blive" ref="BLive"/>
   </Ruler>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
 import Ruler from "@/components/Ruler/Ruler";
-import {changeHtml} from '@/utils/change.js';
+import {changeHtml, changeJson} from '@/utils/change.js';
 import {getHistory} from '@/utils/history.js';
 
 export default {
   name: "workbench-editor",
   components: {Ruler},
   props: ['uuid'],
-  data: function () {
-    return {
-      bliveTemplate: null,
-    }
-  },
   computed: {
     ...mapGetters('History', {"Callback": "getIni", 'getView': 'getView', 'authSave': 'getAuthSave'})
   },
   watch: {
     getView() {
       // 收到通知，重新初始化内容
-      // this.init()
+      this.init()
     },
     Callback(value) {
-      console.log(value)
+      const bliveTemplate = changeJson(this.$refs.BLive.firstChild)
+      console.log(bliveTemplate)
+      console.log('Callback', value)
     }
   },
   methods: {
     init() {
       // 获取缓存
       const bliveTemplate = getHistory(this.uuid)
-      // 没有缓存就跳转错误页面
-      !bliveTemplate && this.$router.push({path: "/workbench/index/error"})
-      // 解析 json 加载 HTML
-      this.$refs.BLive.appendChild(changeHtml(bliveTemplate))
-      //
-      console.log(this.bliveTemplate)
+      if (bliveTemplate) {
+        // 解析 json 加载 HTML
+        this.$refs.BLive.appendChild(changeHtml(bliveTemplate.value))
+      } else {
+        // 没有缓存就跳转错误页面
+        this.$router.push({path: "/workbench/index/error"})
+      }
     },
   },
   mounted() {

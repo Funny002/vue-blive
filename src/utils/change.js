@@ -38,12 +38,6 @@ const createElement = ({tag, style, value}) => {
     return dom
 }
 
-// html(dom) 转换成 json
-export const changeJson = (html) => {
-    console.log('changeHtml', html)
-    return html
-}
-
 /** 创建 dom 树
  * @param dataList
  * @returns {[]}
@@ -62,6 +56,31 @@ const recursionNode = (dataList) => {
         nodeList.push(dom)
     }
     return nodeList
+}
+
+const recursionNodeJson = (dataList) => {
+    if (!dataList) return []
+    let nodeList = [] // 节点列表
+    for (const value of dataList) {
+        // 暂不支持 文件节点，元素节点，文件节点， 这样的组合
+        // 内容严重出错
+        if (value.nodeType === 1) {
+            const {tagName, style: {cssText}, innerText, childNodes} = value
+            nodeList.push({tag: tagName, style: cssText, value: innerText, childList: recursionNodeJson(childNodes)})
+        }
+    }
+    return nodeList
+}
+
+/** html（dom）转换成 json
+ * @param tagName
+ * @param cssText
+ * @param innerText
+ * @param childNodes
+ * @returns {{style: *, childList: [], tag: *, value: *}}
+ */
+export const changeJson = ({tagName, style: {cssText}, innerText, childNodes}) => {
+    return {tag: tagName, style: cssText, value: innerText, childList: recursionNodeJson(childNodes)}
 }
 
 /** json 转换成 html（dom）

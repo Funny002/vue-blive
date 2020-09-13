@@ -55,6 +55,7 @@ export default {
   methods: {
     new_Template() {
       newTemplate(this).then((uuid) => {
+        this.$store.commit('History/setView')
         uuid && this.$router.push({path: '/workbench/editor/' + uuid})
       }).catch((e) => {
         this.$message.error('系统创建空白文件失败，请联系管理员。');

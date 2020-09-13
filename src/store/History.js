@@ -2,6 +2,9 @@ const getHistory = () => {
     let History = localStorage.getItem('History');
     if (History) {
         History = JSON.parse(History)
+        if (History.authSave) {
+            History.authSave = 1
+        }
     } else {
         History = {
             clock: 10,
@@ -26,10 +29,13 @@ export default {
         setView: (state) => state.view++,
         setAuthSave: (state, value) => {
             if (value) {
-                state.authSave = setInterval(() => {
-                    state.ini++; // 更新状态
-                    // }, 3600000 * state.clock)
-                }, 36 * state.clock)
+                // false 或 1 即创建计算器
+                if (!state.authSave || state.authSave === 1) {
+                    state.authSave = setInterval(() => {
+                        state.ini++; // 更新状态
+                    }, 3600000 * state.clock)
+                    // }, 100 * state.clock)
+                }
             } else {
                 clearInterval(state.authSave)
                 state.authSave = false
