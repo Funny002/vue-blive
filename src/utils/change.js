@@ -1,98 +1,97 @@
-// nodeName 标签
-// nodeValue 文本
-// nextSibling 同级的后面一个节点
-// firstChild 当前节点的第一个子节点
-// lastChild 当前节点的最后一个子节点
-// childNodes 子节点合集
-// hasChildNodes() 判断是否存在子节点
-// appendChild() 在最后插入一个节点
-// removeChild() 删除节点
-// insertBefore() 指定位置插入节点
-// replaceChild() 节点替换
-// normalize() 清楚内部空文本节点
-// HTMLCollection 获取 dom 属性
-// children 只读获取子节点合集
-// append() 当前 dom 节点的最后一个子节点
-// ChildNode
-
-
-// function DOMComb(parent, callback) {
-//     if (parent.hasChildNodes()) {
-//         for (var node = parent.firstChild; node; node = node.nextSibling) {
-//             DOMComb(node, callback);
-//         }
-//     }
-//     callback(parent);
-// }
-
-/** 创建一个 dom 元素
- * @param tag
- * @param style
- * @param value
- * @returns HTMLDocument
+/** 获取元素属性
+ * @param attributes Array
+ * @param attributesList Json
+ * @returns {{}} Json
  */
-const createElement = ({tag, style, value}) => {
-    const dom = document.createElement(tag)
-    dom.innerText = value
-    dom.style = style
-    return dom
-}
-
-/** 创建 dom 树
- * @param dataList
- * @returns {[]}
- */
-const recursionNode = (dataList) => {
-    if (!dataList) return []
-    let nodeList = [] // 节点列表
-    for (const {tag, style, value, childList} of dataList) {
-        const dom = createElement({tag, style, value})// 当前主节点的 n子节点
-        const domList = recursionNode(childList)
-        // 吧子节点添加到主节点中
-        while (domList.length) {
-            dom.append(domList.pop())
-        }
-        // 主节点添加到列表
-        nodeList.push(dom)
+export const getAttributes = (attributes, attributesList = {}) => {
+    for (const {nodeName, nodeValue} of attributes) {
+        attributesList[nodeName] = nodeValue;
     }
-    return nodeList
+    return attributesList;
 }
 
-const recursionNodeJson = (dataList) => {
+/** 递归取节点
+ * @param dataList Array
+ * @returns {[]|*[]} Array
+ */
+export const recursionNodeJson = (dataList) => {
     if (!dataList) return []
     let nodeList = [] // 节点列表
-    for (const value of dataList) {
-        // 暂不支持 文件节点，元素节点，文件节点， 这样的组合
-        // 内容严重出错
-        if (value.nodeType === 1) {
-            const {tagName, style: {cssText}, innerText, childNodes} = value
-            nodeList.push({tag: tagName, style: cssText, value: innerText, childList: recursionNodeJson(childNodes)})
+    // 标签 ，标签类型 ， 标签内容 ，标签属性 ，标签子级
+    for (const {nodeName, nodeType, nodeValue, attributes, childNodes} of dataList) {
+        if (nodeType === 1) { // 元素
+            nodeList.push({nodeName, nodeType, attributes: getAttributes(attributes), childNodes: recursionNodeJson(childNodes)})
+        } else { // 文本，注释，空格，等... 多用途方法
+            nodeList.push({nodeName, nodeType, nodeValue})
         }
     }
     return nodeList
 }
 
 /** html（dom）转换成 json
- * @param tagName
- * @param cssText
- * @param innerText
+ * @param nodeName
+ * @param nodeType
+ * @param attributes
  * @param childNodes
- * @returns {{style: *, childList: [], tag: *, value: *}}
+ * @returns {{nodeName: *, attributes: {}, childList: [], nodeType: *}} Json
  */
-export const changeJson = ({tagName, style: {cssText}, innerText, childNodes}) => {
-    return {tag: tagName, style: cssText, value: innerText, childList: recursionNodeJson(childNodes)}
+export const changeJson = ({nodeName, nodeType, attributes, childNodes}) => {
+    return {nodeName, nodeType, attributes: getAttributes(attributes), childList: recursionNodeJson(childNodes)}
+}
+
+// /** 赋值元素属性
+
+export const setAttributes = (HTMLElement, attributes) => {
+    for (const ObjKey in attributes) {
+        HTMLElement[ObjKey] = attributes[ObjKey]
+    }
+    return HTMLElement
+}
+
+/** 创建 dom 节点
+ * @param nodeName
+ * @param attributes
+ * @returns {*}
+ */
+export const createElement = ({nodeName, attributes}) => {
+    const dom = document.createElement(nodeName)
+    return setAttributes(dom, attributes)
+}
+
+/**  创建 dom 树
+ * @param dataList
+ * @returns {[]|*[]}
+ */
+export const recursionNodeHtml = (dataList) => {
+    if (!dataList) return []
+    let nodeList = [] // 节点列表
+    for (const {nodeName, nodeType, nodeValue, attributes, childNodes} of dataList) {
+        let dom = null;
+        if (nodeType === 1) {
+            dom = createElement({nodeName, attributes})
+            const domList = recursionNodeHtml(childNodes)
+            while (domList.length) {
+                dom.append(domList.pop())
+            }
+        } else if (nodeType === 8) {
+            dom = document.createComment(nodeValue)
+        } else {
+            dom = document.createTextNode(nodeValue)
+        }
+        nodeList.push(dom)
+    }
+    return nodeList
 }
 
 /** json 转换成 html（dom）
- * @param tag
- * @param style
- * @param value
+ * @param nodeName
+ * @param attributes
  * @param childList
- * @returns {HTMLDocument}
+ * @returns {*}
  */
-export const changeHtml = ({tag, style, value, childList}) => {
-    const dom = createElement({tag, style, value}); // 主节点
-    const nodeList = recursionNode(childList)
+export const changeHtml = ({nodeName, attributes, childList}) => {
+    const dom = createElement({nodeName, attributes})
+    const nodeList = recursionNodeHtml(childList)
     while (nodeList.length) {
         dom.append(nodeList.pop())
     }

@@ -22,7 +22,8 @@
         <el-button
             :key="key"
             :disabled="item.disabled"
-            @click="updateBtnClick(item.name)"
+            :ref="`${item.name}Button`"
+            @click="listBtnClick(item.name)"
             v-for="(item,key) in updateBtnList"
         >
           <div class="template-body-top-div">
@@ -64,10 +65,13 @@
 </template>
 
 <script>
+import {zipUnPack} from "@/utils/zipBlive";
+
 export default {
   name: "workbench-menu-template",
   data: function () {
     return {
+      File: null,
       maxHeight: 0,
       filter: {
         checkbox: [],
@@ -88,7 +92,7 @@ export default {
         h2: "测试模板",
         span: "",
         cardList: [
-            //  5-4-3-5
+          //  5-4-3-5
           {uuid: 'xaaag-asda-asd-asdqw', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
           {uuid: 'xaaag-asda-asd-asdqw', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
           {uuid: 'xaaag-asda-asd-asdqw', title: "测试用", tags: [{lang: "test"}, {lang: "free", type: "success"}]},
@@ -104,14 +108,32 @@ export default {
       this.$emit('dialogClose');
       this.$router.push({path: `/workbench/editor/${uuid}`});
     },
+    listBtnClick(data) {
+      if (data === 'url') {
+        this.updateBtnClick()
+      }
+      if (data === 'file') {
+        this.filterChange()
+      }
+    },
     updateBtnClick() {
-      //
+      this.$message({message: '功能正在施工中......', type: 'warning'});
+    },
+    fileCallback() {
+      console.log(zipUnPack(this.File.files[0]))
+      this.File = null; // 清空
     },
     filterChange() {
-      //
+      if (!this.File) {
+        this.File = document.createElement('input')
+        this.File.onchange = this.fileCallback;
+        this.File.type = 'file';
+      }
+      this.File.click()
     }
   },
   mounted() {
+    // this.$refs.urlButton.ondragover = this.dragoverFile
     this.$nextTick(() => {
       this.maxHeight = document.documentElement['clientHeight'] - 160
       window.onresize = () => {

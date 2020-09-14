@@ -26,7 +26,8 @@ export default {
         getAuthSave: state => !!state.authSave
     },
     mutations: {
-        setView: (state) => state.view++,
+        setIni: state => state.ini++,
+        setView: state => state.view++,
         setAuthSave: (state, value) => {
             if (value) {
                 // false 或 1 即创建计算器

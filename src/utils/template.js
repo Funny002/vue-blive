@@ -1,5 +1,6 @@
-import {addHistory, hasHistory, listHistory} from "@/utils/history";
 import {unPack} from "@/utils/zipBlive";
+import {changeJson} from '@/utils/change.js'
+import {addHistory, hasHistory, listHistory} from "@/utils/history";
 
 const uuidTemplate = 'xxxxx-xxxx-xxxx-xxxxx';
 const createUuid = () => {
@@ -42,7 +43,8 @@ export const newTemplate = async (this_) => {
             return false
         }
     }
-    return addTemplate({tag: "div", style: "", value: "", childList: null})
+    // 创建div[dom] -> dom 转 json -> 添加缓存
+    return addTemplate(changeJson(document.createElement('div')))
 }
 
 // 通过URL创建模板
@@ -53,8 +55,8 @@ export const urlTemplate = (fileData) => {
 // 提供Blive文件创建模板
 export const fileTemplate = (file) => {
     let uuid = createUuid()
-    while (history.hasHistory(uuid)) {
+    while (hasHistory(uuid)) {
         uuid = createUuid()
     }
-    history.addHistory(uuid, unPack(file))
+    addHistory(uuid, unPack(file))
 }

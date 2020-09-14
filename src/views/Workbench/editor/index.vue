@@ -8,7 +8,7 @@
 import {mapGetters} from "vuex";
 import Ruler from "@/components/Ruler/Ruler";
 import {changeHtml, changeJson} from '@/utils/change.js';
-import {getHistory} from '@/utils/history.js';
+import {addHistory, getHistory} from '@/utils/history.js';
 
 export default {
   name: "workbench-editor",
@@ -22,10 +22,18 @@ export default {
       // 收到通知，重新初始化内容
       this.init()
     },
-    Callback(value) {
+    Callback() {
       const bliveTemplate = changeJson(this.$refs.BLive.firstChild)
-      console.log(bliveTemplate)
-      console.log('Callback', value)
+      if (bliveTemplate) {
+        if (addHistory(this.uuid, changeJson(this.$refs.BLive.firstChild))) {
+          this.$message({message: '保存成功', type: 'success'})
+          this.$store.commit('History/setView')
+        } else {
+          this.$message({message: '保存失败', type: 'error'})
+        }
+      } else {
+        this.$message({message: '获取模板失败，请联系管理员', type: 'error'})
+      }
     }
   },
   methods: {
@@ -34,6 +42,7 @@ export default {
       const bliveTemplate = getHistory(this.uuid)
       if (bliveTemplate) {
         // 解析 json 加载 HTML
+        // console.log(changeHtml(bliveTemplate.value))
         this.$refs.BLive.appendChild(changeHtml(bliveTemplate.value))
       } else {
         // 没有缓存就跳转错误页面

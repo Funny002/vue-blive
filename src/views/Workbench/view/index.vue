@@ -24,11 +24,6 @@
       <span>{{ vuex.Copyright }}</span>
       <span>{{ vuex.Version }}</span>
     </h4>
-
-    <el-dialog class="">
-
-    </el-dialog>
-
   </div>
 </template>
 
@@ -83,9 +78,10 @@ export default {
       });
     },
     history_Template() {
+      this.$emit('openMenu', 'history')
     },
     viewCardListClick(name) {
-      if (['url', 'file', 'history'].includes(name)) {
+      if (['url', 'file'].includes(name)) {
         this.$message({
           message: '功能正在施工中......',
           type: 'warning'

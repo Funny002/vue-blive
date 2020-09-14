@@ -100,9 +100,12 @@ export const delHistory = (uuid, isAll = 0) => {
  */
 export const addHistory = (uuid, value, time = null) => {
     // 判断 uuid 是否存在
-    const templateData = getHistory(uuid)
+    const templateData = getHistory(uuid, 'all')
     if (templateData) {
         time && delHistory(uuid, time);
+        if (templateData.length >= 10 && !delHistory(uuid, templateData[0].time)) {
+            return false;
+        }
         template[uuid].push({time: new Date().getTime(), value})
     } else {
         template[uuid] = [{time: new Date().getTime(), value}]

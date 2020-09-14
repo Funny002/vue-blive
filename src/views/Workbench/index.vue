@@ -1,8 +1,8 @@
 <template>
   <div id="App">
-    <workbench-menu :show="workbench.menu" @listClick="menuClick"/>
+    <workbench-menu ref="workbenchMenu" :show="workbench.menu" @listClick="menuClick"/>
     <div id="container" :class="{'container-editor':workbench.menu}">
-      <router-view :menuShow="workbench.menu" @menuShow="menuShow"/>
+      <router-view :menuShow="workbench.menu" @menuShow="menuShow" @openMenu="openMenu"/>
     </div>
     <!-- 菜单的集合 -->
   </div>
@@ -23,6 +23,9 @@ export default {
     }
   },
   methods: {
+    openMenu(menuName) {
+      this.$refs.workbenchMenu.menuListClick(menuName)
+    },
     menuShow(show) {
       this.workbench.menu = show
     },
