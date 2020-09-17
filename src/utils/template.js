@@ -1,8 +1,9 @@
-import {unPack} from "@/utils/zipBlive";
-import {changeJson} from '@/utils/change.js'
+import {changeJson} from '@/utils/change.js';
+import {zipUnPack} from "@/utils/zipBlive.js";
 import {addHistory, hasHistory, listHistory} from "@/utils/history";
 
 const uuidTemplate = 'xxxxx-xxxx-xxxx-xxxxx';
+
 const createUuid = () => {
     return uuidTemplate.replace(/[x]/g, () => (Math.random() * 16 | 0).toString(16))
 }
@@ -15,6 +16,7 @@ const addTemplate = (value) => {
     // {} 代表空文件
     return addHistory(uuid, value) ? uuid : false
 }
+
 // 创建空白模板
 export const newTemplate = async (this_) => {
     const keys = Object.keys(listHistory())
@@ -58,5 +60,5 @@ export const fileTemplate = (file) => {
     while (hasHistory(uuid)) {
         uuid = createUuid()
     }
-    addHistory(uuid, unPack(file))
+    addHistory(uuid, zipUnPack(file))
 }

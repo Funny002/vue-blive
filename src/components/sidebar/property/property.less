@@ -1,0 +1,27 @@
+.sidebar-property {
+  width: 100%;
+  height: 100%;
+  display: table;
+  overflow: hidden;
+
+  &-list {
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    padding: 16px 0;
+    justify-content: center;
+    box-shadow: 0 0 3px #ddd;
+
+    /deep/
+    .el-button {
+      min-width: 80px;
+      font-size: 16px;
+    }
+  }
+
+  &-body {
+    width: 100%;
+    overflow-y: auto;
+    height: calc(100% - 69px);
+  }
+}

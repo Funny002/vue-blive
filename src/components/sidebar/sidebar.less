@@ -1,0 +1,45 @@
+.workbench-sidebar {
+  top: 0;
+  left: 100%;
+  z-index: 110;
+  height: 20px;
+  width: 100vh;
+  display: flex;
+  position: fixed;
+  padding: 0 16px;
+  transform-origin: 0 0;
+  background-color: #fff;
+  transform: rotate(90deg);
+
+  &-btn {
+    height: 20px;
+    display: block;
+    padding: 0 16px;
+    cursor: pointer;
+    border-color: #ddd;
+    border-style: solid;
+    border-width: 0 1px 0 1px;
+
+    & + & {
+      margin-left: 8px;
+    }
+  }
+
+  &-component {
+    top: 20px;
+    right: 100%;
+    width: 300px;
+    height: 100vh;
+    overflow-y: auto;
+    position: absolute;
+    background-color: #fff;
+    transform-origin: 100% 0;
+    transform: rotate(-90deg);
+    border-right: 1px solid #ddd;
+  }
+}
+
+.btn-block {
+  color: #fff;
+  background-color: #ff86b2;
+}

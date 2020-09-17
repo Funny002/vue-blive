@@ -34,7 +34,7 @@ Element(Select, true);
 Element(Option, true);
 Element(OptionGroup);
 Element(Button, true);
-Element(ButtonGroup);
+Element(ButtonGroup, true);
 Element(Table, true);
 Element(TableColumn, true);
 Element(DatePicker, true);

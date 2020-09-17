@@ -12,13 +12,7 @@
           <el-avatar v-else size="small" :src="user.avatar" :alt="user.name"/>
         </div>
       </el-tooltip>
-      <el-tooltip
-          class="menu-list"
-          placement="right"
-          :content="$t(item.name)"
-          :disabled="item.disabled"
-          v-for="(item,key) in menu.list" :key="key"
-      >
+      <el-tooltip class="menu-list" placement="right" :content="$t(item.name)" :disabled="item.disabled" v-for="(item,key) in menu.list" :key="key">
         <el-divider v-if="item.type==='line'"/>
         <el-button v-else-if="item.type==='btn'" type="text" @click="menuListClick(item.name)">
           <el-icon :name="item.icon"/>

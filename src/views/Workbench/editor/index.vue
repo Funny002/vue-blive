@@ -1,18 +1,28 @@
 <template>
-  <Ruler>
-    <div class="Blive" ref="BLive"/>
-  </Ruler>
+  <div class="workbench-editor">
+    <workbench-view-code/>
+    <workbench-sidebar/>
+    <workbench-ruler>
+      <div class="Blive" ref="BLive"/>
+    </workbench-ruler>
+  </div>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
 import Ruler from "@/components/Ruler/Ruler";
+import Sidebar from '@/components/sidebar/sidebar'
+import viewCode from "@/components/viewCode/viewCode";
 import {changeHtml, changeJson} from '@/utils/change.js';
 import {addHistory, getHistory} from '@/utils/history.js';
 
 export default {
   name: "workbench-editor",
-  components: {Ruler},
+  components: {
+    'workbench-ruler': Ruler,
+    'workbench-sidebar': Sidebar,
+    'workbench-view-code': viewCode
+  },
   props: ['uuid'],
   computed: {
     ...mapGetters('History', {"Callback": "getIni", 'getView': 'getView', 'authSave': 'getAuthSave'})
