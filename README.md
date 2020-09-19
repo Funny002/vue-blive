@@ -1,4 +1,4 @@
-# vue-blive
+# vue-blive-refactor
 
 ## Project setup
 ```
