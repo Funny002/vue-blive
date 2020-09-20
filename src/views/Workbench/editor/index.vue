@@ -3,7 +3,10 @@
     <workbench-view-code/>
     <workbench-sidebar/>
     <workbench-ruler>
-      <div class="Blive" ref="BLive"/>
+      <div class="Blive" ref="BLive" :style="{'top':mobile.left+'px','left':mobile.top+'px'}" @mouseout.stop @mousedown.stop @click.stop @mouseup.stop>
+        <span class="Blive-right" disabled><el-icon name="more"/></span>
+        <span class="Blive-bottom" disabled><el-icon name="more"/></span>
+      </div>
     </workbench-ruler>
   </div>
 </template>
@@ -25,9 +28,14 @@ export default {
   },
   props: ['uuid'],
   computed: {
-    ...mapGetters('History', {"Callback": "getIni", 'getView': 'getView', 'authSave': 'getAuthSave'})
+    ...mapGetters('History', {"Callback": "getIni", 'getView': 'getView', 'authSave': 'getAuthSave'}),
+    ...mapGetters('Blive', {'domClick': 'getClick'}),
+    ...mapGetters('Ruler', {'mobile': 'getMobile'}),
   },
   watch: {
+    domClick(value) {
+      console.log(value)
+    },
     getView() {
       // 收到通知，重新初始化内容
       this.init()
@@ -51,9 +59,11 @@ export default {
       // 获取缓存
       const bliveTemplate = getHistory(this.uuid)
       if (bliveTemplate) {
-        // 解析 json 加载 HTML
-        // console.log(changeHtml(bliveTemplate.value))
-        this.$refs.BLive.appendChild(changeHtml(bliveTemplate.value))
+        const html = changeHtml(bliveTemplate.value)
+        // 添加到vuex
+        this.$store.commit('Blive/setHtml', html)
+        // 加载进入模板
+        this.$refs.BLive.appendChild(html)
       } else {
         // 没有缓存就跳转错误页面
         this.$router.push({path: "/workbench/index/error"})
@@ -72,3 +82,6 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+@import "./index.less";
+</style>

@@ -49,7 +49,7 @@ Element(FormItem);
 Element(Tabs, true);
 Element(TabPane, true);
 Element(Tag, true);
-Element(Tree);
+Element(Tree, true);
 Element(Alert, true);
 Element(Slider);
 Element(Icon, true);

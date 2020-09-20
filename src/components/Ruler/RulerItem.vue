@@ -91,12 +91,7 @@ export default {
     getRatio() {
       this.canvasDom = this.$refs.RulerItemCanvas.getContext('2d')
       this.canvas.ratio = ((context) => {
-        const backingStore = context.backingStorePixelRatio ||
-            context.webkitBackingStorePixelRatio ||
-            context.mozBackingStorePixelRatio ||
-            context.msBackingStorePixelRatio ||
-            context.oBackingStorePixelRatio ||
-            context.backingStorePixelRatio || 1;
+        const backingStore = context.backingStorePixelRatio || context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1;
         return (window.devicePixelRatio || 1) / backingStore;
       })(this.canvasDom)
       this.canvasDom.scale(this.canvas.ratio, this.canvas.ratio);
@@ -108,7 +103,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       setTimeout(() => {
-        this.init(1080)
+        this.init(2000)
       })
     })
   }

@@ -14,6 +14,10 @@ export default {
         setShow: (state, value) => {
             state.show = value
             localStorage.setItem('Ruler', value)
-        }
+        },
+        setMobile: (state, value) => {
+            state.mobile = value
+            // localStorage.setItem('Ruler', value)
+        },
     }
 }

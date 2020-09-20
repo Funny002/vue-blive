@@ -1,7 +1,8 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import Ruler from "@/store/Ruler.js";
-import History from '@/store/History.js';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import Ruler from "./Ruler.js";
+import Blive from './Blive.js';
+import History from './History.js';
 
 Vue.use(Vuex)
 
@@ -28,5 +29,6 @@ export default new Vuex.Store({
     modules: {
         History: History, // 缓存
         Ruler: Ruler, // 标尺
+        Blive: Blive, // 主体
     }
 })

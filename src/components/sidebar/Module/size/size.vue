@@ -4,8 +4,8 @@
       <el-tooltip :content="item.content">
         <span class="sidebar-size-list-title">{{ item.title }}</span>
       </el-tooltip>
-      <el-input class="sidebar-size-list-input" :placeholder="item.val" size="mini" v-model="item.val">
-        <el-select class="sidebar-size-list-select" slot="append" v-model="item.unit">
+      <el-input class="sidebar-size-list-input" :placeholder="item.val" size="mini" v-model="item.val" @blur="inputBlur(item,key)" :disabled="!dom">
+        <el-select class="sidebar-size-list-select" slot="append" v-model="item.unit" @change="inputBlur(item,key)">
           <el-option v-for="(item,key) in unit" :key="key" :label="item" :value="item"/>
         </el-select>
       </el-input>
@@ -20,6 +20,7 @@ export default {
   name: "sidebar-size",
   data: function () {
     return {
+      dom: null,
       size: [
         {val: '-', name: "width", title: "宽", unit: 'px', content: "元素宽"},
         {val: '-', name: "height", title: "高", unit: 'px', content: "元素高"},
@@ -29,6 +30,28 @@ export default {
         {val: '-', name: "max-height", title: "最大高", unit: 'px', content: "元素最大高"},
       ],
       unit: ['%', 'px', 'vh', 'vw', 'auto'],
+    }
+  },
+  mounted() {
+    this.dom = this.$store.getters['Blive/getClick'];
+    this.dom && this.size.find(item => {
+      const value = this.dom.style[item.name]
+      if (value !== '') {
+        const [_, val, unit] = value.split(/^([\d]+)/)
+        Object.assign(item, {val, unit}, _)
+      }
+    })
+    console.log(this.dom && this.dom.style)
+  },
+  methods: {
+    inputBlur(value, key) {
+      const {val, name, unit} = value
+      if (!val.match(/[\d]+/)) {
+        Object.assign(this.size[key], {val: "-", unit: "px"})
+        return false
+      }
+      this.dom.style[name] = val + unit
+      // console.log(JSON.stringify(value))
     }
   }
 }

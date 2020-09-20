@@ -5,7 +5,7 @@
       <ruler-item type="left" :mobile="getMobile.left" @mousedown="RulerItemMousedown"/>
       <ruler-line @mouseup="RulerLineMouseup" :ruler-line="RulerLine.list" @mousedown="RulerLineMousedown"/>
     </template>
-    <div class="Ruler-body">
+    <div class="Ruler-body" @mousedown.stop="mousedownRuler" @mouseup="mouseupRuler">
       <slot/>
     </div>
   </div>
@@ -23,7 +23,10 @@ export default {
     return {
       ClientRects: null, // 参考线距离纠正
       onMousemove: null, // window onmousemove方法保存
-      RulerLine: {list: [], key: null}, // 参考线
+      RulerLine: {
+        key: null,
+        list: [{isLevel: true, distance: 150}, {isLevel: false, distance: 150}]
+      }, // 参考线
       RulerBack: require('../../assets/image/RulerBack.jpg')
     }
   },
@@ -31,6 +34,23 @@ export default {
     ...mapGetters('Ruler', {'isShow': "getShow", 'getMobile': "getMobile"}),
   },
   methods: {
+    mouseupRuler() {
+      document.onmousemove = this.onMousemove
+      this.onMousemove = null
+    },
+    mousedownRuler({x: rulerX, y: rulerY, which}) {
+      if (which === 1) {
+        this.onMousemove = document.onmousemove
+        let {top: MobileX, left: MobileY} = this.$store.getters['Ruler/getMobile']
+        document.onmousemove = ({x: docX, y: docY}) => {
+          const [x, y] = [rulerX - docX, rulerY - docY]
+          this.$store.commit('Ruler/setMobile', {left: MobileY - y, top: MobileX - x})
+        }
+        document.onmouseup = () => {
+          document.onmousemove = this.onMousemove
+        }
+      }
+    },
     RulerMouseup() {
       const {key} = this.RulerLine;
       key && this.RulerLineMouseup(key);
@@ -98,6 +118,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
+    cursor: grab;
     overflow: hidden;
     position: relative;
     padding-top: 150px;

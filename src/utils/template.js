@@ -46,7 +46,10 @@ export const newTemplate = async (this_) => {
         }
     }
     // 创建div[dom] -> dom 转 json -> 添加缓存
-    return addTemplate(changeJson(document.createElement('div')))
+    const html = document.createElement('div')
+    html.style.width = '100%';
+    html.style.height = '100%';
+    return addTemplate(changeJson(html))
 }
 
 // 通过URL创建模板

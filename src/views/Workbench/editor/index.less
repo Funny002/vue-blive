@@ -1,5 +1,6 @@
 .workbench-editor {
   z-index: 100;
+  //cursor: pointer;
 
   &-sidebar {
     top: 0;
@@ -10,5 +11,66 @@
     position: fixed;
     background-color: #fff;
     box-shadow: 0 0 3px #ddd;
+  }
+}
+
+.Blive {
+  width: 856px;
+  height: 230px;
+  position: relative;
+  border: 1px solid #48f;
+  background-color: rgba(255, 255, 255, .3);
+
+  //> div:hover {
+  //  .Blive {
+  //    &-right,
+  //    &-bottom {
+  //      display: none;
+  //    }
+  //  }
+  //}
+  .Blive {
+    &-right,
+    &-bottom {
+      display: none;
+    }
+  }
+
+  > span[disabled] {
+    background-color: rgba(170, 170, 170, 1);
+  }
+
+  &-right,
+  &-bottom {
+    top: 50%;
+    left: 100%;
+    width: 14px;
+    color: #fff;
+    height: 50px;
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 10px;
+    background-color: #59f;
+    transform: translate(-50%, -50%);
+
+    > i {
+      top: 50%;
+      left: 50%;
+      font-size: 14px;
+      position: absolute;
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+
+  &-bottom {
+    top: 100%;
+    left: 50%;
+    width: 60px;
+    height: 14px;
+
+    > i {
+      transform: translate(-50%, -50%);
+    }
   }
 }

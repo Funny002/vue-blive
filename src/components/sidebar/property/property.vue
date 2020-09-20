@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Box from '../Module/Box/box'
+import Box from '../Module/Box/Box'
 import Size from '../Module/size/size'
 import collapse from "@/components/collapse/collapse";
 
@@ -44,6 +44,11 @@ export default {
         {label: "Box模型", show: true, component: Box},
       ]
     }
+  },
+
+  mounted() {
+    // this.dom = this.$store.getters['Blive/getClick'];
+    // console.log(this.dom.attributes)
   },
   methods: {
     btnListClick(key) {
