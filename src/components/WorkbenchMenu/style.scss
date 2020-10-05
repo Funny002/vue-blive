@@ -1,0 +1,124 @@
+.WorkbenchMenu {
+  &-logo {
+    width: 80px;
+    padding: 20px;
+
+    > img {
+      max-width: 100%;
+    }
+  }
+
+  &-body {
+    left: 0;
+    top: 30vh;
+    z-index: 1;
+    width: 80px;
+    padding: 16px 0;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 0 3px #ddd;
+    transition: transform .3s;
+    border-radius: 0 8px 8px 0;
+    transform: translateY(-30%);
+  }
+
+  &-cover {
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 100vh;
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    align-items: center;
+    background-color: #fff;
+    justify-content: center;
+    transition: transform .3s;
+    transform: translateX(-100%);
+  }
+
+  &-editor {
+    &:hover {
+      .WorkbenchMenu {
+        &-cover {
+          transform: translateX(-100%);
+        }
+
+        &-body {
+          transform: translateY(-30%);
+        }
+      }
+    }
+
+    .WorkbenchMenu {
+      &-cover {
+        transform: translateX(0%);
+      }
+
+      &-body {
+        padding: 0;
+        height: 100vh;
+        border-radius: 0;
+        transform: translate(-100%, -30%);
+      }
+    }
+  }
+}
+
+.menu {
+  &-divider {
+    width: 80%;
+    height: 1px;
+    display: block;
+    margin: 16px 5px;
+    background-color: #ddd;
+    //border-top: 1px solid #bbb;
+  }
+
+  &-item {
+    padding: 16px;
+    display: block;
+    cursor: pointer;
+
+    &:hover {
+      > i {
+        color: #FF86B2 !important;
+      }
+
+      //background-color: rgba(255, 134, 178, .1);
+
+      .menu-item-tooltip {
+        display: block;
+      }
+    }
+
+    > i {
+      font-size: 20px;
+    }
+
+    &-tooltip {
+      top: 50%;
+      left: 100%;
+      color: #ffff;
+      display: none;
+      padding: 0 8px;
+      line-height: 30px;
+      position: absolute;
+      border-radius: 4px;
+      white-space: nowrap;
+      background-color: #2C3E50;
+      transform: translate(10px, -50%);
+
+      &::before {
+        top: 50%;
+        right: 100%;
+        content: '';
+        position: absolute;
+        transform: translateY(-50%);
+        border-right: 5px solid #2C3E50;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+      }
+    }
+  }
+}

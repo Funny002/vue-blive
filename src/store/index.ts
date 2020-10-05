@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import actions from './actions'
-import getters from './getters'
-import mutations from './mutations'
+
+/* 引入自定义接口 */
+import {IndexState} from './interface'
 
 /* 其他组件 */
 import User from './user/index' // 用户
 import Ruler from './ruler/index' // 标尺
 import History from './history/index' // 缓存
+import workbenchDialog from './workbenchDialog/index'
 
 /* 挂载全局 */
 Vue.use(Vuex)
@@ -15,14 +16,23 @@ Vue.use(Vuex)
 /* 创建实例 */
 export default new Vuex.Store({
     state: () => ({
-        //
-    }),
-    actions,
-    getters,
-    mutations,
+        isBeta: true,
+        version: '0.1.8',
+        author: "Re Funny",
+        email: "2048412928@qq.com",
+    } as IndexState),
+    getters: {
+        getVersion: ({version, isBeta}: IndexState): string => {
+            return `Version: ${version}${isBeta ? ' Beta' : ''}`;
+        },
+        getCopyright: ({author}: IndexState): string => {
+            return `Copyright © ${new Date().getFullYear()} ${author} . All Rights Reserved`
+        }
+    },
     modules: {
         User,
         Ruler,
         History,
+        workbenchDialog
     }
 });

@@ -1,46 +1,24 @@
 @import "color";
 
-.var-theme {
-  @import "theme";
-}
-
 * {
   margin: 0;
   padding: 0;
   position: relative;
+  color: $--theme-color;
   box-sizing: border-box;
 }
 
-a[href] {
-  position: relative;
-  text-decoration: none;
-
-  &::before {
-    left: 0;
-    bottom: 0;
-    height: 0;
-    width: 100%;
-    content: '';
-    position: absolute;
-    transform: rotateY(90deg);
-    transition: transform .3s;
-    border-top: 1px solid #FF86B2;
-  }
-
-  &:hover::before {
-    transform: rotateY(0deg);
-  }
-
-  &.noneBefore::before {
-    border: none;
-  }
-}
 body {
   font-size: 14px;
   text-align: center;
+  background-color: $--theme;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, Avenir, sans-serif;
+}
+
+.var-theme {
+  @import "theme";
 }
 
 @media (prefers-color-scheme: dark) {
