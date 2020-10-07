@@ -29,3 +29,53 @@ body {
     @import "theme";
   }
 }
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: #f0f1ef;
+
+  &-left,
+  &-right {
+    height: 100%;
+    flex: 0 0 auto;
+    overflow-y: auto;
+  }
+
+  &-left {
+    width: 200px;
+    background-color: #fff;
+  }
+
+  &-right {
+    padding: 0 32px;
+    width: calc(100% - 200px);
+
+    .el-divider__text {
+      background-color: #f0f1ef;
+    }
+  }
+}
+
+.var-cord {
+  width: 100%;
+  display: flex;
+  padding: 32px;
+  align-items: center;
+  background-color: #fff;
+  justify-content: space-between;
+
+  .var-cord {
+    padding: 0;
+  }
+
+  &-alert {
+    .el-alert {
+      &__icon,
+      &__title {
+        color: #fff;
+      }
+    }
+  }
+}

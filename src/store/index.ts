@@ -6,8 +6,7 @@ import {IndexState} from './interface'
 
 /* 其他组件 */
 import User from './user/index' // 用户
-import Ruler from './ruler/index' // 标尺
-import History from './history/index' // 缓存
+import Expand from './expand/index' // 扩展
 import workbenchDialog from './workbenchDialog/index'
 
 /* 挂载全局 */
@@ -31,8 +30,7 @@ export default new Vuex.Store({
     },
     modules: {
         User,
-        Ruler,
-        History,
+        Expand,
         workbenchDialog
     }
 });

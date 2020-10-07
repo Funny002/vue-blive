@@ -1,5 +1,7 @@
 import Vue from 'vue';
-import {Avatar, Button, Card, Checkbox, Col, DatePicker, Dialog, Dropdown, DropdownItem, DropdownMenu, Form, FormItem, Icon, Input, Loading, Menu, MenuItem, Message, MessageBox, Notification, RadioButton, Row, Table, TableColumn, Tag} from 'element-ui';
+import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
+import {Alert, Avatar, Button, Card, Checkbox, Col, DatePicker, Dialog, Divider, Dropdown, DropdownItem, DropdownMenu, Form, FormItem, Icon, Input, InputNumber, Loading, Menu, MenuItem, Message, MessageBox, Notification, Radio, RadioButton, RadioGroup, Row, Switch, Table, TableColumn, Tag} from 'element-ui';
+
 
 // Vue.use(Pagination);
 Vue.use(Dialog);
@@ -13,14 +15,14 @@ Vue.use(Menu);
 Vue.use(MenuItem);
 // Vue.use(MenuItemGroup);
 Vue.use(Input);
-// Vue.use(InputNumber);
-// Vue.use(Radio);
-// Vue.use(RadioGroup);
+Vue.use(InputNumber);
+Vue.use(Radio);
+Vue.use(RadioGroup);
 Vue.use(RadioButton);
 Vue.use(Checkbox);
 // Vue.use(CheckboxButton);
 // Vue.use(CheckboxGroup);
-// Vue.use(Switch);
+Vue.use(Switch);
 // Vue.use(Select);
 // Vue.use(Option);
 // Vue.use(OptionGroup);
@@ -41,7 +43,7 @@ Vue.use(FormItem);
 // Vue.use(TabPane);
 Vue.use(Tag);
 // Vue.use(Tree);
-// Vue.use(Alert);
+Vue.use(Alert);
 // Vue.use(Slider);
 Vue.use(Icon);
 Vue.use(Row);
@@ -69,13 +71,15 @@ Vue.use(Card);
 // Vue.use(Timeline);
 // Vue.use(TimelineItem);
 // Vue.use(Link);
-// Vue.use(Divider);
+Vue.use(Divider);
 // Vue.use(Image);
 // Vue.use(Calendar);
 // Vue.use(Backtop);
 // Vue.use(PageHeader);
 // Vue.use(CascaderPanel);
 Vue.use(Loading.directive);
+Vue.component(CollapseTransition.name, CollapseTransition)
+
 Vue.prototype.$ELEMENT = {size: 'small', zIndex: 1000};
 Vue.prototype.$loading = Loading.service;
 Vue.prototype.$msgbox = MessageBox;

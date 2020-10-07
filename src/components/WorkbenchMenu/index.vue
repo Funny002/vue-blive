@@ -31,20 +31,24 @@ export default class WorkbenchMenu extends Vue {
   userAvatar = '' // 头像
   logoImage = '' // logo
   menuList = [
-    {tooltip: "仪表盘", icon: "discover"},
+    {tooltip: "仪表盘", path: '/dashboard', icon: "discover"},
     {type: "divider"},
-    {tooltip: "发布", icon: "video-play"},
-    {tooltip: "图库", icon: "picture-outline"},
-    {tooltip: "缓存", icon: "time"},
-    // {tooltip: "pagination", icon: "copy-document"},
-    {tooltip: "模板", icon: "files"},
+    {tooltip: "发布", path: 'release', icon: "video-play"},
+    {tooltip: "图库", path: 'gallery', icon: "picture-outline"},
+    {tooltip: "缓存", path: 'history', icon: "time"},
+    // {tooltip: "分页", path: 'pagination', icon: "copy-document"},
+    {tooltip: "模板", path: 'template', icon: "files"},
     {type: "divider"},
-    {tooltip: "设置", icon: "setting"},
-    {tooltip: "帮助", icon: "question"},
+    {tooltip: "设置", path: 'site', icon: "setting"},
+    {tooltip: "帮助", path: 'help', icon: "question"},
   ]
 
-  MenuListClick(item: any) {
-    console.log(item)
+  MenuListClick({path}: { path: string }) {
+    if (path.indexOf('/') >= 0) {
+      this.$router.push({path})
+    } else {
+      this.$store.commit('workbenchDialog/setPath', path)
+    }
   }
 
   mounted() {

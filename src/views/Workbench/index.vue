@@ -18,8 +18,9 @@
   </div>
 </template>
 <script lang="ts">
-import {Component, Vue, Watch} from 'vue-property-decorator'
 import {Getter} from "vuex-class";
+import {workbenchDialogState} from "@/store/interface";
+import {Component, Vue, Watch} from 'vue-property-decorator'
 import WorkbenchMenu from "@/components/WorkbenchMenu/index.vue";
 
 @Component({
@@ -33,14 +34,14 @@ export default class Workbench extends Vue {
   dialogTitle = '';
   isEditor = false;
 
-  @Getter('workbenchDialog/getDialog') dialogInfo
+  @Getter('workbenchDialog/getDialog') dialogInfo?: undefined
 
-  @Watch('dialogInfo') getDialogInfo({title, path}) {
+  @Watch('dialogInfo') getDialogInfo({title, path}: workbenchDialogState) {
     // 屏蔽传空
     title && path && this.dialogInit(title, path)
   }
-  
-  dialogInit(title, path) {
+
+  dialogInit(title: string, path: string) {
     // 设置标题
     this.dialogTitle = title;
     // 开启窗口
@@ -85,6 +86,7 @@ export default class Workbench extends Vue {
       padding: 0;
       width: 100%;
       flex: 1 1 auto;
+      height: calc(100% - 60px);
     }
   }
 }
