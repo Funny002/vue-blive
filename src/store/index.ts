@@ -7,7 +7,8 @@ import {IndexState} from './interface'
 /* 其他组件 */
 import User from './user/index' // 用户
 import Expand from './expand/index' // 扩展
-import workbenchDialog from './workbenchDialog/index'
+import Breadcrumb from './breadcrumb/index'
+import WorkbenchDialog from './workbenchDialog/index'
 
 /* 挂载全局 */
 Vue.use(Vuex)
@@ -31,6 +32,7 @@ export default new Vuex.Store({
     modules: {
         User,
         Expand,
-        workbenchDialog
+        Breadcrumb,
+        WorkbenchDialog
     }
 });

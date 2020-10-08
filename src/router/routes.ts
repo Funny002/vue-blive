@@ -28,23 +28,6 @@ const routes: Array<RouteConfig> = [{
         component: () => import(/* webpackChunkName: "Blog" */ '@/views/Blog/module/donate/index.vue'),
     }]
 }, {
-    name: "DashBoard",
-    path: "/dashboard",
-    meta: {title: "仪表盘"},
-    redirect: "/dashboard/index",
-    component: () => import(/* webpackChunkName: "DashBoard" */ '@/views/Dashboard/frame/index.vue'),
-    children: [{
-        path: "index",
-        name: "dashboardIndex",
-        meta: {title: "仪表盘"},
-        component: () => import(/* webpackChunkName: "DashBoard" */ '@/views/Dashboard/module/index/index.vue'),
-    }, {
-        path: "tutorials",
-        name: "dashboardTutorials",
-        meta: {title: "学习与教程"},
-        component: () => import(/* webpackChunkName: "DashBoard" */ '@/views/Dashboard/module/tutorials/index.vue'),
-    }]
-}, {
     name: "Workbench",
     path: "/workbench",
     meta: {title: "工作台"},
@@ -61,6 +44,11 @@ const routes: Array<RouteConfig> = [{
         name: "workbenchEditor",
         component: () => import(/* webpackChunkName: "Workbench" */ '@/views/Workbench/editor/index.vue'),
     }]
+}, {
+    path: "*",
+    name: "Error",
+    meta: {title: "404"},
+    component: () => import('@/views/public/error/index.vue'),
 }];
 
 export default routes

@@ -17,6 +17,15 @@ body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, Avenir, sans-serif;
 }
 
+#App {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}
+
 .var-theme {
   @import "theme";
 }

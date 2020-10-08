@@ -34,7 +34,7 @@ export default class Workbench extends Vue {
   dialogTitle = '';
   isEditor = false;
 
-  @Getter('workbenchDialog/getDialog') dialogInfo?: undefined
+  @Getter('WorkbenchDialog/getDialog') dialogInfo?: undefined
 
   @Watch('dialogInfo') getDialogInfo({title, path}: workbenchDialogState) {
     // 屏蔽传空

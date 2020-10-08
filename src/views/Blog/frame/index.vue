@@ -5,28 +5,22 @@
       <main class="blog-main">
         <router-view/>
       </main>
-      <blog-footer/>
+      <public-footer/>
     </div>
   </div>
 </template>
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator'
-import BlogFooter from "@/views/Blog/frame/footer/index.vue";
 import BlogHeader from "@/views/Blog/frame/header/index.vue";
+import PublicFooter from "@/views/public/footer/index.vue";
 
-@Component({
-  components: {
-    BlogHeader,
-    BlogFooter,
-  }
-})
+@Component({components: {BlogHeader, PublicFooter}})
 export default class Frame extends Vue {
   //
 }
 </script>
 
 <style scoped lang="scss">
-
 .blog {
   top: 0;
   left: 0;

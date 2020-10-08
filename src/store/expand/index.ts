@@ -1,4 +1,5 @@
 import {expandStatus, rulerMobile} from "@/store/interface";
+import {StoreOptions} from 'vuex'
 
 export default {
     namespaced: true,
@@ -53,4 +54,4 @@ export default {
             state.saveClock = clock > 10 ? clock : 10
         }
     }
-}
+} as StoreOptions<any>

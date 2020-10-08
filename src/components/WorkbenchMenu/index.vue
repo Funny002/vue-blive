@@ -5,7 +5,7 @@
         <img :src="logoImage" alt="Logo">
         <span class="menu-item-tooltip" @click.stop>首页</span>
       </router-link>
-      <div class="menu-item" @click="MenuListClick">
+      <div class="menu-item" @click="MenuListClick({path:'sign', tooltip:'登录'})">
         <el-avatar icon="el-icon-user-solid" :src="userAvatar" size="small"></el-avatar>
         <span class="menu-item-tooltip" @click.stop>登录/注册</span>
       </div>
@@ -31,7 +31,7 @@ export default class WorkbenchMenu extends Vue {
   userAvatar = '' // 头像
   logoImage = '' // logo
   menuList = [
-    {tooltip: "仪表盘", path: '/dashboard', icon: "discover"},
+    // {tooltip: "仪表盘", path: '/dashboard', icon: "discover"},
     {type: "divider"},
     {tooltip: "发布", path: 'release', icon: "video-play"},
     {tooltip: "图库", path: 'gallery', icon: "picture-outline"},
@@ -43,11 +43,17 @@ export default class WorkbenchMenu extends Vue {
     {tooltip: "帮助", path: 'help', icon: "question"},
   ]
 
-  MenuListClick({path}: { path: string }) {
+  MenuListClick({path, tooltip}: { path: string; tooltip: string }) {
+    if (['sign', 'release', 'gallery', 'template', 'help'].includes(path)) {
+      return this.$message({
+        message: ` ${tooltip}，功能正在施工中......`,
+        type: 'warning'
+      });
+    }
     if (path.indexOf('/') >= 0) {
       this.$router.push({path})
     } else {
-      this.$store.commit('workbenchDialog/setPath', path)
+      this.$store.commit('WorkbenchDialog/setPath', path)
     }
   }
 
