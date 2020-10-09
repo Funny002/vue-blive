@@ -29,8 +29,8 @@ import WorkbenchMenu from "@/components/WorkbenchMenu/index.vue";
   }
 })
 export default class Workbench extends Vue {
+  dialogBody: null | (() => Promise<any>) = null;
   dialogShow = false;
-  dialogBody = null;
   dialogTitle = '';
   isEditor = false;
 

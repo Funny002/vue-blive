@@ -24,10 +24,10 @@ export default {
         getSaveClock: ({saveClock}: expandStatus) => saveClock,
     },
     actions: {
-        save: (actions: any, {type, value}: any) => {
-            actions.commit(type, value)
+        save: ({state, commit}, {type, value}: any) => {
+            commit(type, value)
             // 保存
-            localStorage.setItem('expand_config', JSON.stringify(actions.state))
+            localStorage.setItem('expand_config', JSON.stringify(state))
         }
     },
     mutations: {

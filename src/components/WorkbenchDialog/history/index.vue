@@ -101,11 +101,11 @@ export default class WorkbenchDialogHistory extends Vue {
     this.$store.dispatch('Expand/save', {type: "setSaveClock", value: saveClock})
   }
 
-  // mounted() {
-  //   this.$nextTick(() => {
-  //     console.log(this.authSave)
-  //   })
-  // }
+  mounted() {
+    this.$nextTick(() => {
+      // console.log(getHistoryList())
+    })
+  }
 }
 </script>
 <style scoped lang="scss">

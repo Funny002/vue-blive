@@ -1,6 +1,7 @@
 import actions from './actions'
 import getters from './getters'
 import mutations from './mutations'
+import {StoreOptions} from "vuex";
 
 export default {
     namespaced: true,
@@ -10,4 +11,4 @@ export default {
     getters,
     actions,
     mutations,
-};
+} as StoreOptions<any>;

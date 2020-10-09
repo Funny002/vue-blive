@@ -1,4 +1,5 @@
 import {workbenchDialogState} from '../interface'
+import {StoreOptions} from "vuex";
 
 export default {
     namespaced: true,
@@ -33,4 +34,4 @@ export default {
             }
         }
     },
-};
+} as StoreOptions<any>;
