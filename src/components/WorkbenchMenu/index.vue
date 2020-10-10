@@ -1,14 +1,21 @@
 <template>
   <div class="WorkbenchMenu" :class="{'WorkbenchMenu-editor':isEditor}">
     <div class="WorkbenchMenu-body">
-      <router-link class="WorkbenchMenu-logo menu-item" to="/">
-        <img :src="logoImage" alt="Logo">
-        <span class="menu-item-tooltip" @click.stop>首页</span>
-      </router-link>
+
       <div class="menu-item" @click="MenuListClick({path:'sign', tooltip:'登录'})">
         <el-avatar icon="el-icon-user-solid" :src="userAvatar" size="small"></el-avatar>
         <span class="menu-item-tooltip" @click.stop>登录/注册</span>
       </div>
+
+      <div v-if="isEditor" class="menu-item" @click="$router.push({path:'/workbench/index'})">
+        <el-icon class="menu-item-icon" name="back"/>
+        <span class="menu-item-tooltip" @click.stop>回退</span>
+      </div>
+      <div v-else class="menu-item" @click="$router.push({path:'/'})">
+        <el-icon class="menu-item-icon" name="guide"/>
+        <span class="menu-item-tooltip" @click.stop>首页</span>
+      </div>
+
       <template v-for="(item,key) in menuList">
         <span v-if="item.type && item.type === 'divider'" class="menu-divider" :key="key"/>
         <div v-else class="menu-item" :key="key" @click="MenuListClick(item)">
@@ -16,6 +23,7 @@
           <span class="menu-item-tooltip" @click.stop>{{ item.tooltip }}</span>
         </div>
       </template>
+
     </div>
     <div class="WorkbenchMenu-cover">
       <el-icon style="transform: rotate(90deg);" name="more"/>

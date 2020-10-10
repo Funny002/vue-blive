@@ -76,9 +76,14 @@ export default class WorkbenchView extends Vue {
     return funcMap[name](this)
   }
 
+  activated() {
+    this.$emit('is-editor', false)
+  }
+
   mounted() {
     // 存在就强制跳转到 error
     this.error && this.error !== 'error' && this.$router.push({path: "/workbench/index/error"})
+    this.$emit('is-editor', false)
     const {getVersion, getCopyright} = this.$store.getters
     this.Version = getVersion
     this.Copyright = getCopyright

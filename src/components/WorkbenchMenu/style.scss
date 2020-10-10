@@ -1,3 +1,5 @@
+@import "./src/assets/scss/color";
+
 .WorkbenchMenu {
   &-logo {
     width: 80px;
@@ -94,6 +96,7 @@
 
     > i {
       font-size: 20px;
+      color: $--theme-color;
     }
 
     &-tooltip {

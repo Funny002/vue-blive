@@ -22,6 +22,7 @@ export interface expandStatus {
     rulerStatus: boolean,
     rulerMobile: rulerMobile,
     /* 自动保存 */
+    saveView: number,
     saveClock: number,
     saveNumber: number,
     saveStatus: number,

@@ -7,6 +7,7 @@ export default {
         // 获取全部工作台配置
         const expand = JSON.parse(localStorage.getItem('expand_config') || '{}')
         return Object.assign({
+            saveView: 0,
             saveClock: 10,
             saveNumber: 0,
             saveStatus: 0,
@@ -21,6 +22,7 @@ export default {
         getRulerMobile: ({rulerMobile}: expandStatus) => rulerMobile,
         /* 自动保存 */
         getSave: ({saveStatus}: expandStatus) => saveStatus,
+        getSaveView: ({saveView}: expandStatus) => saveView, // 缓存更新通知
         getSaveClock: ({saveClock}: expandStatus) => saveClock,
     },
     actions: {
@@ -31,6 +33,8 @@ export default {
         }
     },
     mutations: {
+        saveUpdate: (state: expandStatus) => (state.saveView++),
+        saveNumber: (state: expandStatus) => (state.saveNumber++),
         setRuler: (state: expandStatus, status: boolean) => {
             state.rulerStatus = status
         },
