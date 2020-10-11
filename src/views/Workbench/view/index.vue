@@ -34,12 +34,6 @@ import {newTemplate} from "@/utils/template";
 
 @Component
 export default class WorkbenchView extends Vue {
-//   declare module 'vue/types/vue' {
-//   interface Vue {
-//   [key: string]: any,
-// }
-// }
-
   @Prop({default: false}) error?: string;
   Version = ''
   Copyright = ''
@@ -51,29 +45,21 @@ export default class WorkbenchView extends Vue {
   ]
 
   viewCardListClick(name: string) {
-    if (arrayHas(['file', 'history', 'url'], name)) {
+    if (arrayHas(['file', 'url'], name)) {
       return this.$message({message: '功能正在施工中......', type: 'warning'});
     }
     const funcMap: { [key: string]: () => void } = {
-      new(_this) {
-        newTemplate((uuid: string, status: boolean) => {
-          if (!status) {
-            return _this.$message({message: '创建模板随便', type: 'warning'});
-          }
-          _this.$router.push({path: '/workbench/editor/' + uuid})
-        })
-      },
-      file() {
-        console.log('new')
-      },
-      history() {
-        console.log('new')
-      },
-      url() {
-        console.log('new')
-      }
+      // 创建空白模板
+      new: () => newTemplate((uuid: string, status: boolean) => {
+        if (!status) {
+          return this.$message({message: '创建模板随便', type: 'warning'});
+        }
+        this.$router.push({path: '/workbench/editor/' + uuid})
+      }),
+      // 通知打开 history 窗口
+      history: () => this.$store.commit('WorkbenchDialog/setPath', 'history')
     }
-    return funcMap[name](this)
+    return funcMap[name]()
   }
 
   activated() {

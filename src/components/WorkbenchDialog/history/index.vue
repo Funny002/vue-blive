@@ -38,22 +38,26 @@
         <el-collapse-transition>
           <div v-show="keys === key">
             <el-divider/>
-            <el-table style="width: 100%;" :data="item">
-              <el-table-column type="index" label="序号" align="center" width="60px"/>
-              <el-table-column label="缓存时间">
-                <template slot-scope="scope">{{ new Date(scope.row.time) }}</template>
-              </el-table-column>
-              <!--              <el-table-column label="操作" align="right">-->
-              <el-table-column label="操作">
-                <template slot-scope="scope">
-                  <div style="display: flex; justify-content: flex-end;">
-                    <el-button type="success" @click="ListExportClick(key,scope.row)">导出缓存</el-button>
-                    <el-button type="primary" @click="ListUseClick(key,scope.row)">使用缓存</el-button>
-                    <el-button type="danger" @click="ListRemoveClick(key,scope.row.time)">删除缓存</el-button>
+            <div class="history-table">
+              <div class="history-table-thead">
+                <div style="text-align: center; min-width: 80px;">序号</div>
+                <div style="margin-right: auto;">缓存时间</div>
+                <div style=" min-width: 80px;">操作</div>
+              </div>
+              <div class="history-table-tbody" style="flex-direction: column;">
+                <template v-for="(dateList,index) in item">
+                  <div :key="index" class="history-table-thead">
+                    <div style="text-align: center; min-width: 80px;">{{ index }}</div>
+                    <div style="margin-right: auto;">{{ new Date(dateList - 0) }}</div>
+                    <div>
+                      <el-button type="success" @click="ListExportClick(key,dateList)">导出缓存</el-button>
+                      <el-button type="primary" @click="ListUseClick(key,dateList)">使用缓存</el-button>
+                      <el-button type="danger" @click="ListRemoveClick(key,dateList)">删除缓存</el-button>
+                    </div>
                   </div>
                 </template>
-              </el-table-column>
-            </el-table>
+              </div>
+            </div>
           </div>
         </el-collapse-transition>
       </div>
@@ -66,12 +70,19 @@
 </template>
 <script lang="ts">
 import {Getter} from "vuex-class";
+import VueRouter from "vue-router";
 import {Component, Vue, Watch} from 'vue-property-decorator'
-import {delHistory, getHistoryList} from "@/utils/history";
+import {addHistory, delHistory, getHistory, getHistoryList} from "@/utils/history";
+
+declare module 'vue/types/vue' {
+  interface Vue {
+    $router: VueRouter;
+  }
+}
 
 @Component
 export default class WorkbenchDialogHistory extends Vue {
-  uuid = ''
+  uuid = '';
   keys = '';
   templateList: { [key: string]: string[] } = {}; // 模板缓存
   //
@@ -84,29 +95,71 @@ export default class WorkbenchDialogHistory extends Vue {
     this.handleCache() // 刷新
   }
 
-
+  // 列表导出
   ListExportClick() {
     console.log('ListExportClick')
   }
 
-  ListUseClick() {
-    console.log('ListUseClick')
+  // 列表使用
+  ListUseClick(uuid: string, date: string) {
+    const template = getHistory(uuid, date)
+    if (template) {
+      const addStatus = addHistory(uuid, Object.assign({}, template))
+      if (addStatus) {
+        // 删除旧模板
+        if (delHistory(uuid, date)) {
+          // 跳转
+          this.$router.push({path: `/workbench/editor/${uuid}`})
+          // 提示
+          this.message('模板使用成功', 'success')
+          // 关闭窗口
+          this.$emit('dialog-close')
+        } else {
+          this.message('删除旧模板失败！', 'error')
+        }
+      }
+    } else {
+      this.message('模板不存在！', 'error')
+    }
   }
 
-  ListRemoveClick() {
-    console.log('ListRemoveClick')
+  // 列表删除
+  removeOneself(uuid: string, time: string) {
+    const list = [...this.templateList[uuid]];
+    if (list.length === 1) {
+      this.$alert('删除会吧当前模板全部删除，确定要删除吗。', '系统提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: "取消",
+        showCancelButton: true,
+        type: 'warning',
+      }).then(() => {
+        this.removeTips(uuid, delHistory(uuid, 1))
+      }).catch(() => {
+        this.message('取消了删除', 'info')
+      })
+    } else {
+      const status = delHistory(uuid, time)
+      this.message(`删除${status ? '成功' : '失败'}`, status ? 'success' : 'error')
+    }
   }
 
-  autoSaveChange(status: boolean) {
-    this.$store.dispatch('Expand/save', {type: "setSave", value: status})
-  }
-
-  clockChange(saveClock: number) {
-    this.$store.dispatch('Expand/save', {type: "setSaveClock", value: saveClock})
-  }
-
-  updateClick() {
-    this.message('上传，功能正在施工中 🚧', 'warning')
+  // 列表删除
+  ListRemoveClick(uuid: string, time: string) {
+    const list = [...this.templateList[uuid]];
+    if (this.getUUID() === uuid && time === list.pop()) {
+      this.$alert('检测到你正在删除自己正在编辑的模块，确定要删除吗。', '系统提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: "取消",
+        showCancelButton: true,
+        type: 'warning',
+      }).then(() => {
+        this.removeOneself(uuid, time)
+      }).catch(() => {
+        this.message('取消了删除', 'info')
+      })
+    } else {
+      this.removeOneself(uuid, time)
+    }
   }
 
   // 删除
@@ -151,6 +204,22 @@ export default class WorkbenchDialogHistory extends Vue {
   // 取消删除
   message(html: string, type: string) {
     this.$message({message: html, dangerouslyUseHTMLString: true, type});
+    this.handleCache()
+  }
+
+  // 自动保存
+  autoSaveChange(status: boolean) {
+    this.$store.dispatch('Expand/save', {type: "setSave", value: status})
+  }
+
+  // 自动保存 - 时钟
+  clockChange(saveClock: number) {
+    this.$store.dispatch('Expand/save', {type: "setSaveClock", value: saveClock})
+  }
+
+  // 上传
+  updateClick() {
+    this.message('上传，功能正在施工中 🚧', 'warning')
   }
 
   // 解析url
@@ -164,7 +233,9 @@ export default class WorkbenchDialogHistory extends Vue {
     this.templateList = {}
     const cache = getHistoryList();
     for (const key in cache) {
-      this.templateList[key] = Object.keys(cache[key])
+      if (Object.hasOwnProperty.call(cache, key)) {
+        this.templateList[key] = Object.keys(cache[key])
+      }
     }
   }
 
@@ -177,45 +248,5 @@ export default class WorkbenchDialogHistory extends Vue {
 }
 </script>
 <style scoped lang="scss">
-.WorkbenchDialogHistory {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.history {
-  &-card {
-    width: 100%;
-    padding: 20px 32px;
-    border-radius: 4px;
-    background-color: #fff;
-    box-shadow: 0 2px 6px #ddd;
-
-    &:hover {
-      box-shadow: none;
-    }
-
-    & + .history-card {
-      margin-top: 20px;
-    }
-
-    &-list {
-
-    }
-  }
-
-  &-body {
-    width: 100%;
-    padding: 32px;
-    flex: 1 1 auto;
-    overflow-y: auto;
-  }
-
-  &-error > * {
-    width: 100%;
-    color: #8e8e8e;
-    display: block;
-  }
-}
+@import "./style.scss";
 </style>

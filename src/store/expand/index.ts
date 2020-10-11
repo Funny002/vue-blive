@@ -26,7 +26,7 @@ export default {
         getSaveClock: ({saveClock}: expandStatus) => saveClock,
     },
     actions: {
-        save: ({state, commit}, {type, value}: any) => {
+        save: ({state, commit}, {type, value}: { type: string; value: any }) => {
             commit(type, value)
             // 保存
             localStorage.setItem('expand_config', JSON.stringify(state))
