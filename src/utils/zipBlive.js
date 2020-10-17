@@ -6,7 +6,7 @@ export const zipPack = (uuid, data, info = {}) => {
     try {
         const zip = new JsZip()
         zip.file('Blive.json', JSON.stringify(data));
-        let packageFile = {
+        const packageFile = {
             template: uuid,
             name: "测试导出",
             version: '1.0.0',

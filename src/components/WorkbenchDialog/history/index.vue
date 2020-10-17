@@ -71,6 +71,7 @@
 <script lang="ts">
 import {Getter} from "vuex-class";
 import VueRouter from "vue-router";
+import {MessageType} from "element-ui/types/message";
 import {Component, Vue, Watch} from 'vue-property-decorator'
 import {addHistory, delHistory, getHistory, getHistoryList} from "@/utils/history";
 
@@ -202,7 +203,7 @@ export default class WorkbenchDialogHistory extends Vue {
   }
 
   // 取消删除
-  message(html: string, type: string) {
+  message(html: string, type: MessageType) {
     this.$message({message: html, dangerouslyUseHTMLString: true, type});
     this.handleCache()
   }
