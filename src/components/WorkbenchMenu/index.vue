@@ -52,7 +52,7 @@ export default class WorkbenchMenu extends Vue {
   ]
 
   MenuListClick({path, tooltip}: { path: string; tooltip: string }) {
-    if (['sign', 'release', 'gallery', 'template', 'help'].includes(path)) {
+    if (['sign', 'release', 'gallery', 'help'].includes(path)) {
       return this.$message({
         message: ` ${tooltip}，功能正在施工中......`,
         type: 'warning'

@@ -1,18 +1,23 @@
 <template>
-  <ruler>
-    <div class="WorkbenchEditor" :style="{'top':RulerMobile.top+'px',left:RulerMobile.left+'px'}">
-      WorkbenchEditor
-    </div>
-  </ruler>
+  <div class="WorkbenchEditor">
+    <ruler>
+      <div :style="{'top':RulerMobile.top+'px',left:RulerMobile.left+'px'}">
+        WorkbenchEditor
+      </div>
+    </ruler>
+    <vs-code/>
+  </div>
 </template>
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
-import Ruler from "@/components/Ruler/Ruler.vue";
 import {Getter} from "vuex-class";
+import {Component, Vue} from 'vue-property-decorator'
+//
 import {rulerMobile} from "@/store/interface";
+import Ruler from "@/components/Ruler/Ruler.vue";
+import VsCode from "@/components/vsCode/Index.vue";
 
 @Component({
-  components: {Ruler}
+  components: {Ruler, VsCode}
 })
 export default class WorkbenchEditor extends Vue {
   @Getter('Expand/getRulerMobile') RulerMobile?: rulerMobile
@@ -27,5 +32,5 @@ export default class WorkbenchEditor extends Vue {
 }
 </script>
 <style scoped lang="scss">
-//
+
 </style>

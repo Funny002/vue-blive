@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
-import {Alert, Avatar, Button, Card, Checkbox, Col, DatePicker, Dialog, Divider, Dropdown, DropdownItem, DropdownMenu, Form, FormItem, Icon, Input, InputNumber, Loading, Menu, MenuItem, Message, MessageBox, Notification, Radio, RadioButton, RadioGroup, Row, Switch, Table, TableColumn, Tag} from 'element-ui';
+import {Alert, Avatar, Button, Card, Checkbox, CheckboxGroup, Col, DatePicker, Dialog, Divider, Dropdown, DropdownItem, DropdownMenu, Form, FormItem, Icon, Image, Input, InputNumber, Loading, Menu, MenuItem, Message, MessageBox, Notification, Radio, RadioButton, RadioGroup, Row, Switch, Table, TableColumn, Tag} from 'element-ui';
 
 
 // Vue.use(Pagination);
@@ -21,7 +21,7 @@ Vue.use(RadioGroup);
 Vue.use(RadioButton);
 Vue.use(Checkbox);
 // Vue.use(CheckboxButton);
-// Vue.use(CheckboxGroup);
+Vue.use(CheckboxGroup);
 Vue.use(Switch);
 // Vue.use(Select);
 // Vue.use(Option);
@@ -72,7 +72,7 @@ Vue.use(Card);
 // Vue.use(TimelineItem);
 // Vue.use(Link);
 Vue.use(Divider);
-// Vue.use(Image);
+Vue.use(Image);
 // Vue.use(Calendar);
 // Vue.use(Backtop);
 // Vue.use(PageHeader);
