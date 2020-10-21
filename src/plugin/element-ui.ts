@@ -1,6 +1,8 @@
 import Vue from 'vue';
-import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
+// import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
 import {Alert, Avatar, Button, Card, Checkbox, CheckboxGroup, Col, DatePicker, Dialog, Divider, Dropdown, DropdownItem, DropdownMenu, Form, FormItem, Icon, Image, Input, InputNumber, Loading, Menu, MenuItem, Message, MessageBox, Notification, Radio, RadioButton, RadioGroup, Row, Switch, Table, TableColumn, Tag} from 'element-ui';
+
+const CollapseTransition = () => import((`element-ui/src/transitions/collapse-transition`))
 
 
 // Vue.use(Pagination);

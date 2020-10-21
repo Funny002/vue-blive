@@ -86,8 +86,9 @@ export default class RulerItem extends Vue {
     size += 50 - size % 50
     const isLevel = this.canvas.isLevel
     this.canvas.PixelRatio = window.devicePixelRatio
+    this.CanvasElementDom = this.$refs.RulerItemCanvas
     this.canvas[isLevel ? 'width' : 'height'] = size * 3
-    this.CanvasElementDom = this.$refs.RulerItemCanvas.getContext('2d')
+    this.CanvasElementDom = this.CanvasElementDom.getContext('2d')
     this.canvas = Object.assign({}, this.canvas, {margin: ~(size) + 151, PixelRatio: window.devicePixelRatio})
     // 初始化完毕 -> 开始绘画
     this.startDrawLine((size * 3) * this.canvas.PixelRatio)
