@@ -37,6 +37,7 @@
     justify-content: center;
     transition: transform .3s;
     transform: translateX(-100%);
+    border-right: 1px solid #ddd;
   }
 
   &-editor {

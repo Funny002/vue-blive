@@ -1,0 +1,43 @@
+.sideVirtue {
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  z-index: 500;
+  position: fixed;
+
+  &-nav {
+    top: 0;
+    left: 0;
+    width: 100vh;
+    height: 18px;
+    display: flex;
+    padding: 0 10px;
+    position: absolute;
+    transform-origin: 0 0;
+    background-color: #fff;
+    transform: rotate(90deg);
+    border-bottom: 1px solid #ddd;
+
+    &-item {
+      padding: 0 5px;
+      cursor: pointer;
+      font-size: 12px;
+
+      &:hover {
+        color: #FF86B2;
+      }
+    }
+  }
+
+  &-body {
+    top: 0;
+    left: -18px;
+    width: 250px;
+    height: 100vh;
+    position: absolute;
+    background-color: #fff;
+    transform: translate(-100%);
+    border-left: 1px solid #ddd;
+  }
+}
