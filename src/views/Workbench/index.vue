@@ -13,18 +13,21 @@
       </template>
       <component :is="dialogBody" @dialog-close="dialogShow = !dialogShow"/>
     </el-dialog>
-    <workbench-menu :is-editor="isEditor"></workbench-menu>
+    <workbench-menu :is-editor="isEditor" @login-click="loginShow = true"/>
     <router-view @is-editor="event => isEditor = event"/>
+    <login :show="loginShow" @window-close="loginShow = false"/>
   </div>
 </template>
 <script lang="ts">
 import {Getter} from "vuex-class";
+import Login from "@/components/login/index.vue";
 import {workbenchDialogState} from "@/store/interface";
-import {Component, Vue, Watch} from 'vue-property-decorator'
+import {Component, Vue, Watch} from 'vue-property-decorator';
 import WorkbenchMenu from "@/components/WorkbenchMenu/index.vue";
 
 @Component({
   components: {
+    Login,
     WorkbenchMenu
   }
 })
@@ -33,6 +36,7 @@ export default class Workbench extends Vue {
   dialogShow = false;
   dialogTitle = '';
   isEditor = false;
+  loginShow = false;
 
   @Getter('WorkbenchDialog/getDialog') dialogInfo?: undefined
 

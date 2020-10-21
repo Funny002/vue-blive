@@ -1,0 +1,135 @@
+.sign {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  z-index: 100000;
+  transition: background-color 1s;
+  background-color: rgba(0, 0, 0, .0);
+
+  &-show {
+    display: block;
+    //animation: sing-show .3s;
+  }
+
+  &-body {
+    top: 30%;
+    left: 50%;
+    width: 700px;
+    height: 350px;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 4px;
+    transition: transform .5s;
+    background-color: #F0F1EF;
+    box-shadow: 0 3px 6px #444;
+    transform: translate(-50%, -100%) scale(.5);
+  }
+
+  &-next {
+    background-color: rgba(0, 0, 0, .3);
+
+    .sign-body {
+      transform: translate(-50%, -30%) scale(1);
+    }
+  }
+
+  &-nav {
+    top: 0;
+    left: 100%;
+    color: #fff;
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    transition-duration: 0.5s;
+    transform: translateX(-100%);
+    transition-property: left, transform;
+    background: linear-gradient(200deg, #FF86B2, #ff416c);
+
+    &-body {
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 110px;
+      overflow: hidden;
+      position: absolute;
+      transform: translateY(-50%);
+    }
+
+    &-in {
+      transition: margin-top .3s;
+      margin-top: -110px;
+    }
+
+    &-title {
+      display: block;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 40px;
+    }
+
+    &-text {
+      display: block;
+      line-height: 30px;
+      margin-bottom: 8px;
+    }
+
+    &-btn {
+      width: 100px;
+      display: block;
+      margin: 0 auto;
+      cursor: pointer;
+      line-height: 30px;
+      border-radius: 30px;
+      border: 1px solid #fff;
+    }
+  }
+
+
+  &-in,
+  &-up {
+    width: 350px;
+    height: 100%;
+    padding: 50px;
+    position: absolute;
+    transition: transform .5s;
+
+    .el-input + .el-input {
+      margin-top: 10px;
+    }
+
+    background-color: #F0F1EF;
+  }
+
+  &-title {
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 50px;
+  }
+
+
+  &-upShow {
+    .sign {
+      &-nav {
+        left: 0;
+        transform: translateX(0%);
+        background: linear-gradient(130deg, #FF86B2, #ff416c);
+
+        &-in {
+          margin-top: 0;
+        }
+      }
+
+      &-in {
+        transform: translateY(100%);
+      }
+
+      &-up {
+        transform: translateX(100%);
+      }
+    }
+  }
+}

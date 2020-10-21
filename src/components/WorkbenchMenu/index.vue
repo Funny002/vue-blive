@@ -2,7 +2,7 @@
   <div class="WorkbenchMenu" :class="{'WorkbenchMenu-editor':isEditor}">
     <div class="WorkbenchMenu-body">
 
-      <div class="menu-item" @click="MenuListClick({path:'sign', tooltip:'登录'})">
+      <div class="menu-item" @click="$emit('login-click')">
         <el-avatar icon="el-icon-user-solid" :src="userAvatar" size="small"></el-avatar>
         <span class="menu-item-tooltip" @click.stop>登录/注册</span>
       </div>
@@ -38,7 +38,7 @@ export default class WorkbenchMenu extends Vue {
   @Prop({default: false}) isEditor!: boolean;  // 是否编辑状态
   userAvatar = '' // 头像
   logoImage = '' // logo
-  menuList = [
+  menuList: { [key: string]: string }[] = [
     // {tooltip: "仪表盘", path: '/dashboard', icon: "discover"},
     {type: "divider"},
     {tooltip: "发布", path: 'release', icon: "video-play"},
@@ -51,7 +51,7 @@ export default class WorkbenchMenu extends Vue {
     {tooltip: "帮助", path: 'help', icon: "question"},
   ]
 
-  MenuListClick({path, tooltip}: { path: string; tooltip: string }) {
+  MenuListClick({path, tooltip}: { [key: string]: string }) {
     if (['sign', 'release', 'gallery', 'help'].includes(path)) {
       return this.$message({
         message: ` ${tooltip}，功能正在施工中......`,
