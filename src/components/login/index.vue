@@ -16,7 +16,7 @@
         <el-input v-model="user" placeholder="扩展码" clearable>
           <i slot="prefix" class="el-input__icon el-icon-key"/>
         </el-input>
-        <el-button style="width: 100%; margin-top: 10px;"  type="primary">注册</el-button>
+        <el-button style="width: 100%; margin-top: 10px;" type="primary" @click="createClick">注册</el-button>
       </div>
 
       <div class="sign-in">
@@ -32,7 +32,7 @@
         </el-input>
         <div style="display: flex; align-items: center; margin-top: 10px;">
           <el-checkbox>记住密码</el-checkbox>
-          <el-button style="margin-left: auto; width: 100px;" type="primary" icon="el-icon-s-promotion">登录</el-button>
+          <el-button style="margin-left: auto; width: 100px;" type="primary" icon="el-icon-s-promotion" @click="loginClick">登录</el-button>
         </div>
       </div>
 
@@ -51,7 +51,6 @@
         </div>
       </div>
     </div>
-    <!--    <div class="">login</div>-->
   </div>
 </template>
 <script lang="ts">
@@ -73,7 +72,6 @@ export default class Login extends Vue {
   @Prop({default: false}) show?: boolean;
 
   @Watch('show') getShow(bool: boolean) {
-    console.log(bool)
     if (bool) {
       setTimeout(() => {
         this.signNext = true
@@ -81,6 +79,14 @@ export default class Login extends Vue {
     } else {
       this.signNext = false
     }
+  }
+
+  loginClick() {
+    // 登录
+  }
+
+  createClick() {
+    // 注册
   }
 
   signShow = false

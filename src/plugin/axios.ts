@@ -3,7 +3,8 @@ import Axios from 'axios'
 const baseURL = 'http://localhost:8000'
 const axios = Axios.create({
     baseURL,
-    timeout: 1000 * 30,
+    method: "get",
+    timeout: 1000 * 3,
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json; charset=utf-8'
