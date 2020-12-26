@@ -1,18 +1,6 @@
-import Vue from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
-import store from './store'
 import router from './router'
-import './registerServiceWorker'
+import store from './store'
 
-/* 插件 */
-import '@/plugin/element-ui'
-import '@/assets/theme/index.css'
-import axios from '@/plugin/axios'
-
-Vue.config.productionTip = false
-
-/* 挂载原型 */
-Vue.prototype.$axios = axios
-
-/* 实例化 */
-new Vue({router, store, render: h => h(App)}).$mount('#app')
+createApp(App).use(store).use(router).mount('#app')
