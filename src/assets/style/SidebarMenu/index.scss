@@ -1,0 +1,12 @@
+.sidebarMenu {
+  left: 0;
+  top: 10%;
+  width: 80px;
+  padding: 10px;
+  position: fixed;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 0 3px #ddd;
+  border-radius: 0 8px 8px 0;
+  transform: translate(0, -10%);
+}
