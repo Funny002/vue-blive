@@ -1,9 +1,7 @@
-import {RouteRecordRaw} from 'vue-router'
+import {RouteConfig} from "vue-router";
 
-const routes: Array<RouteRecordRaw> = [{
+export default [{
     path: '/',
     name: 'Home',
-    component: () => import( '../views/home.vue')
-}]
-
-export default routes
+    component: () => import('@/views/home.vue')
+}] as Array<RouteConfig>

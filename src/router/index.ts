@@ -1,8 +1,12 @@
-import {createRouter, createWebHistory} from 'vue-router'
-import routes from './routes'
+import Vue from 'vue';
+import routes from './routes';
+import VueRouter from 'vue-router';
 
-const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+    base: process.env.BASE_URL,
+    mode: 'history',
     routes
 })
 
