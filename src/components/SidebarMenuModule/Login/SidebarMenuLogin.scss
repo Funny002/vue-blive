@@ -1,0 +1,146 @@
+.SidebarMenuLogin {
+  top: 30%;
+  left: 50%;
+  z-index: 1;
+  width: 700px;
+  height: 400px;
+  position: fixed;
+  overflow: hidden;
+  border-radius: 8px;
+  animation: show 3s;
+  background-color: #fff;
+  box-shadow: 0 3px 6px #666;
+  transform: translate(-50%, -30%);
+
+  &-body {
+    width: 700px;
+    height: 400px;
+    position: relative;
+  }
+
+  &-title {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 60px;
+    text-align: center;
+  }
+
+  /deep/
+  .el-button {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  &-in,
+  &-up,
+  &-nav {
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 400px;
+    padding: 64px 32px;
+    position: absolute;
+    box-sizing: border-box;
+    background-color: #fff;
+    transition-duration: 0.3s;
+  }
+
+  &-in {
+    transition-property: left, transform;
+  }
+
+  &-up {
+    transition-property: top;
+  }
+
+  //
+  &-nav {
+    right: 0;
+    left: auto;
+    color: #fff;
+    padding: 145px 0;
+    transition-property: background, right, transform;
+    background: linear-gradient(60deg, #cc5581, #dc7bc3);
+
+    &-body {
+      height: 110px;
+      overflow: hidden;
+    }
+
+    &-title {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 40px;
+    }
+
+    &-text {
+      font-size: 14px;
+      line-height: 30px;
+    }
+
+    &-btn {
+      width: 80px;
+      cursor: pointer;
+      line-height: 30px;
+      margin: 8px auto 0;
+      border-radius: 30px;
+      border: 1px solid #ddd;
+
+      &:hover {
+        color: #fb33a1;
+        border-color: #fb33a1;
+        background-color: rgba(255, 255, 255, .5);
+      }
+    }
+
+    &-in,
+    &-up {
+      transition: margin .3s;
+
+      > div {
+        text-align: center;
+      }
+    }
+  }
+
+  &__up {
+    .SidebarMenuLogin {
+      &-up {
+        top: 100%;
+      }
+
+      &-in {
+        left: 100%;
+        transform: translateX(-100%);
+      }
+
+      &-nav {
+        right: 100%;
+        transform: translateX(100%);
+        background: linear-gradient(-60deg, #cc5581, #dc7bc3);
+
+        &-up {
+          margin-top: -110px;
+        }
+      }
+    }
+  }
+
+  &-coverInto {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .3);
+  }
+}
+
+@keyframes show {
+  0% {
+    display: block;
+    transform: translate(-100, -50%) scale(.3);
+  }
+}

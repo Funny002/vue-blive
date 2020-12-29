@@ -1,21 +1,17 @@
 <template>
-  <!-- 组件 -->
-  <sidebar-menu></sidebar-menu>
+  <div class="home">
+    <!-- 组件 -->
+    <sidebar-menu :is-hide="isHide"/>
+  </div>
 </template>
+
 <script lang="ts">
-import {toRefs, reactive} from 'vue'
+import {Component, Vue} from 'vue-property-decorator';
 import SidebarMenu from "@/components/SidebarMenu/SidebarMenu.vue";
 
-const app = {
-  name: "views-home",
-  components: {SidebarMenu},
-  // components: {SidebarMenu},
-  setup() {
-    const data = reactive({
-      //
-    });
-    return {...toRefs(data)}
-  }
+@Component({components: {SidebarMenu}})
+export default class Home extends Vue {
+  isHide = false
+  //
 }
-export default app
 </script>

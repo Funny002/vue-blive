@@ -1,37 +1,92 @@
 <template>
-  <div class="sidebarMenu">
-    <template v-for="(item,key) in SidebarMenu" :key="key">
-      <div v-if="item.type==='line'" class="sidebarMenu-line"/>
-      <div v-else class="sidebarMenu-item">
-        <fa-icon class="xxxx" :name="item.icon"/>
-        <div class="sidebarMenu-item-tips">{{ item.title }}</div>
+  <div>
+    <div class="sidebarMenu" :class="{'sidebarMenu-hide':isHide}">
+      <div class="sidebarMenu-body">
+
+        <div class="sidebarMenu-item" @click="onMenuItemClick({name:'SidebarMenuLogin'})">
+          <fa-icon class="sidebarMenu-item-icon" name="user-circle-o"/>
+          <div class="sidebarMenu-item-tips">登录/注册</div>
+        </div>
+
+        <div class="sidebarMenu-item" @click="$router.push({path:'/'})">
+          <fa-icon class="sidebarMenu-item-icon" name="home"/>
+          <div class="sidebarMenu-item-tips">首页</div>
+        </div>
+        <div v-if="isHide" class="sidebarMenu-item" @click="$router.go(-1)">
+          <fa-icon class="sidebarMenu-item-icon" name="reply"/>
+          <div class="sidebarMenu-item-tips">返回</div>
+        </div>
+
+        <div class="sidebarMenu-line"/>
+        <!-- 内容层 -->
+        <template v-for="(item,key) in sidebarMenu">
+          <div :key="key" v-if="item.type==='line'" class="sidebarMenu-line"/>
+          <div :key="key" v-else class="sidebarMenu-item" @click="onMenuItemClick(item)">
+            <fa-icon class="sidebarMenu-item-icon" :name="item.icon"/>
+            <div v-if="item.tips" class="sidebarMenu-item-tips">{{ item.title }}</div>
+          </div>
+        </template>
       </div>
+    </div>
+    <!-- 菜单模组 -->
+    <template v-for="(item,key) in modulesList">
+      <component :key="key" :ref="item.name" :is="item.modules" @callBack="onCallBack"/>
     </template>
   </div>
 </template>
 
 <!-- script -->
 <script lang="ts">
-import {reactive, toRefs} from 'vue'
-import FaIcon from "@/PlugIn/FaIcon.vue";
+import {Component, Prop, Vue} from 'vue-property-decorator';
+import {MenuItem, MenuList} from './verifyRules';
 
-// 自动挂载？
-function authMount(mountList: string[] = []): string[] {
-  const getPath = (path: string) => ('./module/' + path.replace(/.\//, ''))
-  // 获取文件路径
-  require.context('./module', true, /^.\/[\w]+(\/index)?.vue$/).keys().forEach((path: string) => mountList.push(getPath(path)))
-  return mountList
-}
+@Component
+export default class SidebarMenu extends Vue {
+  @Prop({default: false}) isHide?: boolean; // 是否隐藏
+  sidebarMenu: MenuItem[] = [];
+  modulesList: MenuList[] = [];
 
-export default {
-  name: "SidebarMenu",
-  components: {FaIcon},
-  setup() {
-    const data = reactive({
-      SidebarMenu: [{icon: "home", title: 'home'}, {icon: "user", title: 'user'}]
+  onCallBack(item: MenuItem) {
+    if (item.sort) {
+      const list = this.sidebarMenu
+      const len = this.sidebarMenu.length
+      for (let i = 0; i < len; i++) {
+        if (list[i].sort < item.sort) {
+          list.splice(i, 0, item)
+        }
+      }
+    } else {
+      item.sort = 0
+      this.sidebarMenu.push(item)
+    }
+  }
+
+  onMenuItemClick({name}: MenuItem) {
+    try {
+      const dom = this.$refs[name][0]
+      try {
+        dom.$nextTick(() => dom.onInit())
+      } catch (e) {
+        console.warn(`"${name}"组件缺少"onInit"方法! Error: e`, e)
+      }
+    } catch (e) {
+      console.warn(`${name}：ref not exist`, e)
+    }
+  }
+
+  /* 自动挂载 ../SidebarMenuModule 路径必须存在 */
+  authMount(mountList: MenuList[] = []): MenuList[] {
+    const requireComponent = require.context('../SidebarMenuModule', true, /^.\/[\w]+(\/index)?.vue$/);
+    requireComponent.keys().forEach((path: string) => {
+      const context = requireComponent(path);
+      const name = context.default.name || context.name;
+      mountList.push({name, modules: context.default || context});
     });
-    console.log(authMount())
-    return {...toRefs(data)};
+    return mountList
+  }
+
+  created() {
+    this.modulesList = this.authMount()
   }
 }
 </script>

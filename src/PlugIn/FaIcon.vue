@@ -5,9 +5,12 @@
 </template>
 
 <!-- script -->
-<script>
-export default {
-  name: "FaIcon",
-  props: {name: String, iconClass: String}
+<script lang="ts">
+import {Component, Vue, Prop} from 'vue-property-decorator'
+
+@Component
+export default class FaIcon extends Vue {
+  @Prop() name?: string;
+  @Prop() iconClass?: string;
 }
 </script>
