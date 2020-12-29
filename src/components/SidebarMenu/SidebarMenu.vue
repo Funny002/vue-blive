@@ -23,7 +23,7 @@
           <div :key="key" v-if="item.type==='line'" class="sidebarMenu-line"/>
           <div :key="key" v-else class="sidebarMenu-item" @click="onMenuItemClick(item)">
             <fa-icon class="sidebarMenu-item-icon" :name="item.icon"/>
-            <div v-if="item.tips" class="sidebarMenu-item-tips">{{ item.title }}</div>
+            <div v-if="item.title" class="sidebarMenu-item-tips">{{ item.title }}</div>
           </div>
         </template>
       </div>
@@ -46,19 +46,20 @@ export default class SidebarMenu extends Vue {
   sidebarMenu: MenuItem[] = [];
   modulesList: MenuList[] = [];
 
-  onCallBack(item: MenuItem) {
-    if (item.sort) {
-      const list = this.sidebarMenu
-      const len = this.sidebarMenu.length
-      for (let i = 0; i < len; i++) {
-        if (list[i].sort < item.sort) {
-          list.splice(i, 0, item)
-        }
-      }
-    } else {
-      item.sort = 0
-      this.sidebarMenu.push(item)
+  onCallBack(item: MenuItem | MenuItem[]) {
+    const itemVerify = (data: MenuItem) => {
+      if (data.sort === undefined) data.sort = 0
+      this.sidebarMenu.push(data)
     }
+    // 添加到列表
+    if (Array.isArray(item)) {
+      item.map(itemVerify)
+    } else {
+      itemVerify(item)
+    }
+    this.$utils.threadTimeout.ThreadTimer(() => {
+      this.sidebarMenu.length > 1 && this.sidebarMenu.sort((a: MenuItem, b: MenuItem) => (b.sort - a.sort))
+    })
   }
 
   onMenuItemClick({name}: MenuItem) {

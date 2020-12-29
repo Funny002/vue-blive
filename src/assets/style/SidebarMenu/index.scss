@@ -8,7 +8,7 @@
   transform: translateX(-100%);
 
   &-body {
-    top: 10%;
+    top: 30%;
     left: 100%;
     width: 70px;
     padding: 10px 0;
@@ -18,7 +18,7 @@
     box-shadow: 0 0 3px #ddd;
     transition: transform .3s;
     border-radius: 0 8px 8px 0;
-    transform: translateY(-10%);
+    transform: translateY(-30%);
   }
 
   &-line {
@@ -35,7 +35,7 @@
     text-align: center;
 
     &-icon {
-      font-size: 24px;
+      font-size: 16px;
     }
 
     &:hover {
@@ -59,6 +59,7 @@
       height: 30px;
       display: none;
       padding: 0 10px;
+      font-size: 12px;
       line-height: 30px;
       position: absolute;
       border-radius: 4px;
@@ -87,11 +88,11 @@
       left: 0;
       height: 100%;
       border-radius: 0;
-      transform: translate(-100%, -10%);
+      transform: translate(-100%, -30%);
     }
 
     &:hover .sidebarMenu-body {
-      transform: translate(0, -10%);
+      transform: translate(0, -30%);
     }
   }
 }

@@ -83,6 +83,7 @@ export default class SidebarMenuLogin extends Vue {
 
   onClose() {
     this.show = false
+    this.stateSwitch = false
   }
 }
 </script>

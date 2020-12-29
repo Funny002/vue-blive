@@ -15,9 +15,7 @@ const getClock = () => threadClock
  * @constructor
  */
 const ThreadTimer = (func: Function) => {
-    if (threadTimeout) {
-        clearTimeout(threadTimeout)
-    }
+    if (threadTimeout) clearTimeout(threadTimeout)
     threadTimeout = setTimeout(() => {
         threadTimeout = undefined
         //
