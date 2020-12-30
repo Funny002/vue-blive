@@ -1,14 +1,17 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <!-- 组件 -->
+    <sidebar-menu :is-hide="isHide"/>
   </div>
 </template>
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
+import SidebarMenu from "@/components/SidebarMenu/SidebarMenu.vue";
 
-@Component
+@Component({components: {SidebarMenu}})
 export default class Home extends Vue {
+  isHide = false
   //
 }
 </script>
