@@ -1,0 +1,133 @@
+.Layout {
+
+  /**
+   * ==============================================================================
+   *     Main
+   * ==============================================================================
+  */
+  &__btn {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    transition: border-radius .3s;
+
+    &:hover {
+      border-radius: 4px;
+      background-color: rgba(170, 170, 170, .2);
+    }
+  }
+
+  /**
+   * ==============================================================================
+   *     Main
+   * ==============================================================================
+  */
+  &Main {
+    //top: 0;
+    //left: 0;
+    //width: 100vw;
+    //height: 100vh;
+    //position: fixed;
+  }
+
+  /**
+   * ==============================================================================
+   *     Menu
+   * ==============================================================================
+  */
+  &Menu {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    position: fixed;
+    padding: 0 16px;
+    align-items: center;
+    background-color: #fff;
+    box-sizing: border-box;
+
+    &__logo {
+      height: 50px;
+
+      > img {
+        height: 100%;
+      }
+    }
+
+    &__body {
+      margin: 0 10px;
+    }
+
+    &__nav {
+      height: 40px;
+      display: flex;
+      margin: 0 10px;
+      align-items: center;
+    }
+
+    $-Layout-Menu-height: 35px;
+
+    &__user {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      height: $-Layout-Menu-height;
+      border-radius: $-Layout-Menu-height;
+
+      &:hover {
+        box-shadow: 2px 2px 6px #ddd;
+      }
+
+      &_icon,
+      &_avatar {
+        overflow: hidden;
+        width: $-Layout-Menu-height;
+        height: $-Layout-Menu-height;
+      }
+
+      &_icon > span {
+        display: block;
+        font-size: 26px;
+        text-align: center;
+        width: $-Layout-Menu-height;
+        height: $-Layout-Menu-height;
+        line-height: calc(#{$-Layout-Menu-height} + 2px);
+      }
+
+      &_avatar {
+        box-shadow: 0 2px 6px #ddd;
+        border-radius: $-Layout-Menu-height;
+
+        > img {
+          height: 100%;
+        }
+      }
+
+      &_name {
+        color: #999;
+        padding-left: 10px;
+        padding-right: 16px;
+      }
+    }
+  }
+
+  /**
+  * ==============================================================================
+  *     Container
+  * ==============================================================================
+ */
+  &Container {
+    top: 60px;
+    left: 0;
+    width: 100vw;
+    position: fixed;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - 60px);
+  }
+}
