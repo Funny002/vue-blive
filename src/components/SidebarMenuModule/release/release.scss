@@ -1,0 +1,36 @@
+.MenuRelease {
+  .el-dialog__body {
+    box-sizing: border-box;
+    padding: 20px calc(50% - 428px) !important;
+  }
+
+  &__canvas {
+    width: 856px;
+    height: 230px;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #fff;
+
+    &:hover {
+      box-shadow: 0 0 3px #ddd;
+    }
+
+    > canvas {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__form {
+    padding-top: 20px;
+
+    .el-input-group__prepend {
+      width: 50px;
+      text-align: right;
+    }
+
+    &-btn {
+      text-align: right;
+    }
+  }
+}
