@@ -35,7 +35,7 @@ export default class SidebarMenuModuleHistory extends Vue {
   dialogShow = false
   timeClock = 10
   extendShow = false
-  uuidKeys = 'xxxxxxx-x-x-x-x--'
+  uuidKeys = ''
 
   onInit() {
     this.dialogShow = true
@@ -43,12 +43,6 @@ export default class SidebarMenuModuleHistory extends Vue {
 
   onClose() {
     this.dialogShow = false
-  }
-
-  mounted() {
-    this.HistoryList = [{
-      uuid: 'xxxxxxx-x-x-x-x--'
-    }] as HistoryListItem[]
   }
 
   // 自加载菜单回调

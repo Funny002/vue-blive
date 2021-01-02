@@ -24,9 +24,10 @@ export default class WorkbenchEditor extends Vue {
     const uuid = this.uuid || false
     // 页面展示逻辑
     if (uuid) {
-      const state = this.hasUUID(uuid)
+      const state = this.$utils.history.hasHistory(uuid)
       if (state) {
-        // 缓存存在
+        const template = this.$utils.history.getHistory(uuid)
+        console.log(template) //
       } else {
         viewJump('/' + uuid)
       }
@@ -35,8 +36,8 @@ export default class WorkbenchEditor extends Vue {
     }
   }
 
-  mounter() {
-    // this.onViewJump()
+  mounted() {
+    this.onViewJump()
   }
 }
 </script>

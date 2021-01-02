@@ -36,7 +36,8 @@ export default class SidebarMenuModuleSite extends Vue {
   siteMenu: SiteMenuItem[] = [];
 
   onInit() {
-    this.dialogShow = true
+    this.$message.warning('功能正在施工中......')
+    // this.dialogShow = true
   }
 
   onClose() {
@@ -74,7 +75,6 @@ export default class SidebarMenuModuleSite extends Vue {
     requireComponent.keys().forEach((path: string) => {
       const context = requireComponent(path);
       const name = context.default.name || context.name;
-      console.log('sidebarMenuSite -> authMount :>> name', name)
       mountList.push({name, modules: context.default || context});
     });
     return mountList

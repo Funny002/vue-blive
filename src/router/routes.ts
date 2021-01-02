@@ -24,6 +24,7 @@ export default [{
     redirect: "/workbench/view",
     component: () => import('@/views/workbench/main.vue'),
     children: [{
+        props: true,
         path: "view/:error?",
         name: "workbenchView",
         component: () => import('@/views/workbench/view/index.vue')

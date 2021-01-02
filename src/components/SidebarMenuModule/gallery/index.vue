@@ -50,7 +50,8 @@ export default class SidebarMenuModuleGallery extends Vue {
   ]
 
   onInit() {
-    this.dialogShow = true
+    this.$message.warning('功能正在施工中......')
+    // this.dialogShow = true
   }
 
   onClose() {

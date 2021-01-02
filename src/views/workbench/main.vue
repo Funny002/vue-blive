@@ -1,6 +1,6 @@
 <template>
   <div class="WorkbenchMain">
-    <sidebar-menu></sidebar-menu>
+    <sidebar-menu :is-hide="$route.name ==='workbenchEditor'"></sidebar-menu>
     <div class="WorkbenchMainContainer">
       <router-view :key="new Date().getTime()"/>
     </div>
@@ -13,5 +13,9 @@ import SidebarMenu from "@/components/SidebarMenu/SidebarMenu.vue";
 
 
 @Component({components: {SidebarMenu}})
-export default class WorkbenchMain extends Vue {}
+export default class WorkbenchMain extends Vue {
+  //
+}
 </script>
+
+<style lang="scss" src="./workbench.scss"/>

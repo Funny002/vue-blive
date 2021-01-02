@@ -58,7 +58,8 @@ export default class SidebarMenuModuleTemplate extends Vue {
 
   // 进入方法
   onInit() {
-    this.dialogShow = true
+    this.$message.warning('功能正在施工中......')
+    // this.dialogShow = true
   }
 
   // 窗口关闭事件

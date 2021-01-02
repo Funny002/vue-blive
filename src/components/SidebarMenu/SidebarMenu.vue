@@ -37,14 +37,28 @@
 
 <!-- script -->
 <script lang="ts">
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import {Component, Prop, Watch, Vue} from 'vue-property-decorator';
 import {MenuItem, MenuList} from './verifyRules';
+import {Getter} from "vuex-class";
 
 @Component
 export default class SidebarMenu extends Vue {
   @Prop({default: false}) isHide?: boolean; // 是否隐藏
   sidebarMenu: MenuItem[] = [];
   modulesList: MenuList[] = [];
+  // 监听 vuex
+  @Getter('SidebarMenu/getOpenName') getOpenName?: string;
+
+  // 监听变量改变
+  @Watch('getOpenName') getGetOpenName(value: string | undefined) {
+    if (!value) return false
+    // 过滤
+    for (const item of this.sidebarMenu) {
+      item.name === value && this.onMenuItemClick(item)
+    }
+    // 窗口不存在
+    console.warn('%s ,Windows don\'t exist', value)
+  }
 
   onCallBack(item: MenuItem | MenuItem[]) {
     const itemVerify = (data: MenuItem) => {
