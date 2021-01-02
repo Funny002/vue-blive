@@ -1,0 +1,95 @@
+.MenuHistory {
+  .el-dialog__body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__card {
+    padding: 20px;
+    flex: 0 0 auto;
+    background-color: #fff;
+    box-shadow: 0 0 3px #ddd;
+
+    &-body,
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &-header {
+      padding-top: 20px;
+    }
+
+    &-body {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+
+      &-title {
+        line-height: 30px;
+      }
+
+      &-text {
+        color: #999;
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  &__body {
+    width: 100%;
+    padding: 20px;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+
+
+  &Item {
+    padding: 20px;
+    border-radius: 4px;
+    background-color: #fff;
+
+    &:hover {
+      box-shadow: 0 0 3px #ddd;
+    }
+
+    &__header {
+      display: flex;
+      align-items: center;
+
+      &-title {
+        display: flex;
+      }
+
+      &-btn {
+        margin-left: auto;
+        padding-right: 20px;
+      }
+
+      &-icon {
+        width: 35px;
+        height: 35px;
+        display: block;
+        cursor: pointer;
+        line-height: 35px;
+        text-align: center;
+        transition: transform .3s;
+      }
+    }
+
+    &__show {
+      .MenuHistoryItem__header-icon {
+        transform: rotate(-90deg);
+      }
+    }
+
+    &__extend {
+      border-top: 1px solid #ddd;
+      margin-top: 20px;
+      padding-top: 20px;
+    }
+  }
+}

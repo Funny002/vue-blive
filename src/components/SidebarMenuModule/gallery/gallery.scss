@@ -1,0 +1,47 @@
+.MenuGallery {
+  .el-dialog__body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__card {
+    padding: 20px;
+    flex: 0 0 auto;
+    background-color: #fff;
+    box-shadow: 0 0 3px #ddd;
+
+    &-search {
+      .el-input-group__prepend {
+        width: 60px;
+      }
+    }
+
+    &-tabs {
+      padding-top: 20px;
+    }
+  }
+
+  &__body {
+    padding: 20px;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    box-sizing: border-box;
+    //
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    //justify-content: flex-start;
+    justify-content: space-around;
+
+    &-item {
+      margin: 20px 10px;
+      border-radius: 4px;
+      background-color: #fff;
+
+      &:hover {
+        box-shadow: 1px 2px 6px #ddd;
+      }
+    }
+  }
+}

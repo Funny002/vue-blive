@@ -1,5 +1,10 @@
 import Vue from 'vue';
 import 'element-ui/lib/theme-chalk/index.css'
+
+// fade/zoom 等
+import 'element-ui/lib/theme-chalk/base.css';
+// collapse 展开折叠
+import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
 import {
     Pagination,
     Dialog,
@@ -155,7 +160,8 @@ Vue.use(PageHeader);
 Vue.use(CascaderPanel);
 
 Vue.use(Loading.directive);
-Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 };
+Vue.component(CollapseTransition.name, CollapseTransition)
+Vue.prototype.$ELEMENT = {size: 'small', zIndex: 3000};
 Vue.prototype.$loading = Loading.service;
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$alert = MessageBox.alert;

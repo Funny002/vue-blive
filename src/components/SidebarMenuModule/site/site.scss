@@ -1,0 +1,74 @@
+.MenuSite {
+  .el-dialog__body {
+    display: flex;
+    align-items: stretch;
+  }
+
+  &__menu {
+    width: 220px;
+    height: 100%;
+    flex: 0 0 220px;
+    overflow-y: auto;
+    background-color: #fff;
+    box-shadow: 0 0 3px #ddd;
+
+
+    &-item {
+      color: #999;
+      height: 35px;
+      margin: 5px 0;
+      display: flex;
+      padding: 0 32px;
+      font-weight: 500;
+      line-height: 35px;
+      box-sizing: border-box;
+
+      &-icon {
+        width: 35px;
+        height: 35px;
+        display: block;
+        line-height: 35px;
+        text-align: center;
+      }
+    }
+
+    &-btn {
+      color: #606266;
+      padding: 0 16px;
+      cursor: pointer;
+      position: relative;
+
+
+      &::before {
+        top: 0;
+        right: 0;
+        width: 4px;
+        content: "";
+        height: 35px;
+        position: absolute;
+        background-color: #ff7ab7;
+        transform: rotateX(90deg);
+        transition: transform .3s;
+      }
+    }
+
+    &-active::before {
+      transform: rotateX(0deg);
+    }
+
+    &-active,
+    &-btn:hover {
+      color: #ff7ab7;
+      background-color: rgba(255, 122, 183, 0.2);
+    }
+  }
+
+  &__modules {
+    height: 100%;
+    padding: 32px;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    box-sizing: border-box;
+    width: calc(100% - 220px);
+  }
+}
