@@ -5,12 +5,12 @@ export default [{
     path: '/',
     name: 'Layout',
     redirect: "/index",
-    component: () => import('@/views/layout/main.vue'),
+    component: () => import('@/views/layout/index.vue'),
     children: [{
         path: "index",
         name: "HomeMain",
         meta: {title: "首页"},
-        component: () => import('@/views/home/index.vue'),
+        component: () => import('@/views/home/index.vue')
     }, {
         path: "project",
         name: "ProjectMain",

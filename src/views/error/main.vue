@@ -1,15 +1,13 @@
 <template>
-  <div class="ErrorMain">
-    <h3>ErrorMain</h3>
-    <router-link to="/">Home</router-link>
-  </div>
+  <div>error</div>
 </template>
 
-<script lang="ts">
-import {Component, Vue} from "vue-property-decorator";
-
-@Component
-export default class ErrorMain extends Vue {
-  //
+<script>
+export default {
+  name: "main"
 }
 </script>
+
+<style scoped>
+
+</style>

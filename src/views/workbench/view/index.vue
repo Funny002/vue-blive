@@ -32,9 +32,9 @@ import {Getter, Mutation} from 'vuex-class'
 @Component
 export default class WorkbenchView extends Vue {
   @Prop() error?: string; // 是否错误
-  @Getter('getVersion') getVersion: string; // 版本
-  @Getter('getCopyright') getCopyright: string; // 版权
-  @Mutation('SidebarMenu/setOpenName') setOpenName
+  @Getter('getVersion') getVersion?: string; // 版本
+  @Getter('getCopyright') getCopyright?: string; // 版权
+  @Mutation('SidebarMenu/setOpenName') setOpenName?: ((value: string) => void)
 
   /* 菜单 */
   MenuBtnLIst: MenuBtnItem[] = [
@@ -62,9 +62,7 @@ export default class WorkbenchView extends Vue {
   }
 
   funcHistory() {
-    // this.$message.warning('功能正在施工中......')
-    this.setOpenName('SidebarMenuModuleHistory')
-    // 打开缓存窗口
+    this.setOpenName && this.setOpenName('SidebarMenuModuleHistory')
   }
 
   onClick(name: string) {

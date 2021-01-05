@@ -2,7 +2,7 @@ import {Func} from "mocha";
 
 export const isNull = (value: any) => (typeof value === 'number' ? false : !value && value !== '')
 
-export const isNumber = (value: string) => value.test(/^[\d]+$/)
+export const isNumber = (value: string) => /^[\d]+$/.test(value)
 
 export const isObject = (obj: any) => (typeof obj === 'object')
 

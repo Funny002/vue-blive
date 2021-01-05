@@ -5,11 +5,9 @@
     </div>
 
     <div class="LayoutMenu__body">
-      <el-menu mode="horizontal" :default-active="$route.path" router>
+      <el-menu mode="horizontal" :default-active="$route.path" :router="true">
         <template v-for="(item,key) in navMenu">
-          <!--        <div class="" :key="key" @click="routeJump(item.route)">{{ item.label }}</div>-->
-<!--          <div class="" :key="key" route>{{ item.label }}</div>-->
-          <el-menu-item :key="key" :index="item.route" :route="item.route">{{ item.label }}</el-menu-item>
+          <el-menu-item :key="key" :index="item.route">{{ item.label }}</el-menu-item>
         </template>
       </el-menu>
     </div>
@@ -22,9 +20,9 @@
     </div>
     <div v-if="userInfo" class="LayoutMenu__user">
       <div class="LayoutMenu__user_avatar">
-        <img :src="userInfo.avatar" alt="avatar"/>
+        <img :src="userInfo['avatar']" alt="avatar"/>
       </div>
-      <span class="LayoutMenu__user_name">{{ userInfo.name }}</span>
+      <span class="LayoutMenu__user_name">{{ userInfo['name'] }}</span>
     </div>
     <div v-else class="LayoutMenu__user">
       <div class="LayoutMenu__user_icon">

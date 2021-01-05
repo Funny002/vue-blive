@@ -1,11 +1,16 @@
 <template>
-  <div class="HomeIndex">HomeIndex</div>
+  <div class="">
+    home
+    <router-link to="/project">project</router-link>
+  </div>
 </template>
 
-<script lang="ts">
-import {Vue} from "vue-property-decorator";
-
-export default class HomeIndex extends Vue {
-
+<script>
+export default {
+  name: "index"
 }
 </script>
+
+<style scoped>
+
+</style>

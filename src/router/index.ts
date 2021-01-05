@@ -5,7 +5,7 @@ import VueRouter from 'vue-router';
 const setWebTitle = (webTitle: string | undefined) => {
     const webName = 'Blive5';
     if (webTitle) {
-        if (['首页', 'home', 'Home', 'HOME'].includes(webTitle)) {
+        if (webTitle === '首页') {
             document.title = webName
         } else {
             webTitle && (document.title = webName + ' - ' + webTitle)

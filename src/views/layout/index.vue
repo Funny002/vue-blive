@@ -7,13 +7,12 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import {Component, Vue} from "vue-property-decorator";
+import LayoutContainer from "./container.vue";
 import LayoutMenu from './menu.vue'
-import LayoutContainer from "@/views/layout/container.vue";
 
 @Component({components: {LayoutMenu, LayoutContainer}})
-export default class LayoutMain extends Vue {
-}
+export default class Layout extends Vue {}
 </script>
 <style lang="scss" src="../../assets/style/layout.scss"/>

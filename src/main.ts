@@ -16,7 +16,7 @@ import WindowDialog from "@/PlugIn/WindowDialog.vue";
 Vue.component('FaIcon', FaIcon);
 Vue.component('WindowDialog', WindowDialog);
 
-Vue.prototype.$utils = Utils;
+Vue.prototype.$utils = Utils
 Vue.config.productionTip = false;
 
 new Vue({router, store, render: h => h(App)}).$mount('#app');

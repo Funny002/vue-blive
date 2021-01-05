@@ -1,4 +1,4 @@
-const Utils: { [key: string]: any } = {}; //暴露方法
+const Utils: { [key: string]: { [key: string]: (() => void) } } = {}; //暴露方法
 // 规定取文件 ~ 正则 .\{[\w]+}.ts
 const requireComponent = require.context('/', true, /^\.\/[\w]+\.ts$/);
 // 从路径中提取文件名
