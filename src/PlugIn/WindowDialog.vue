@@ -25,7 +25,7 @@ export default class WindowDialog extends Vue {
 
   visible = false
 
-  @Watch('show') getShow(state) {
+  @Watch('show') getShow(state: boolean) {
     this.visible = state
   }
 

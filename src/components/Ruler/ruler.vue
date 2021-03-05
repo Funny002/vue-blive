@@ -40,9 +40,8 @@ export default class Ruler extends Vue {
 
   get getStyle() {
     const {backgroundImage} = this
-    console.log(backgroundImage)
     return {
-      backgroundImage: 'url("' + backgroundImage + '")'
+      // backgroundImage: 'url("' + backgroundImage + '")'
     }
   }
 

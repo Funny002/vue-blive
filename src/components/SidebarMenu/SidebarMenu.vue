@@ -72,7 +72,13 @@ export default class SidebarMenu extends Vue {
       itemVerify(item)
     }
     this.$utils.threadTimeout.ThreadTimer(() => {
-      this.sidebarMenu.length > 1 && this.sidebarMenu.sort((a: MenuItem, b: MenuItem) => (b.sort - a.sort))
+      const sortFunc = (a: MenuItem, b: MenuItem) => {
+        if (a.sort && b.sort) {
+          return b.sort - a.sort
+        }
+        return 0
+      }
+      this.sidebarMenu.length > 1 && this.sidebarMenu.sort(sortFunc)
     })
   }
 

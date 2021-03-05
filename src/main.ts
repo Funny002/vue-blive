@@ -3,8 +3,9 @@ import App from './App.vue';
 import store from './store';
 import router from './router';
 
+
 // element-ui
-import '@/PlugIn/element-ui'
+import '@/PlugIn/element-ui/index'
 // utils 方法自动挂载 $utils.{File}.{function}
 import Utils from '@/utils/index'
 // font-awesome V4

@@ -14,14 +14,15 @@
     "core-js": "^3.6.5",
     "element-ui": "^2.14.1",
     "font-awesome": "^4.7.0",
+    "froala-editor": "^3.2.5-1",
     "loaders.css": "^0.1.2",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
+    "vue-froala-wysiwyg": "^3.2.5-1",
     "vue-property-decorator": "^8.4.2",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0",
-    "vuex-class": "^0.3.2",
-    "wangeditor": "^4.6.1"
+    "vuex-class": "^0.3.2"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",

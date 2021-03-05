@@ -74,6 +74,26 @@ function arraySort(array: string[] | number[], state = false) {
     }
 }
 
+export const stringIndexOf = (value: string, key: string | RegExp) => {
+    if (typeof key === "string") {
+        return value.indexOf(key)
+    } else {
+        if (key.test(value)) {
+            let J = 0
+            // value = value.substr(1, value.length)
+            for (let i = value.length; i > 0; i--) {
+                if (!key.test(value)) {
+                    return J
+                }
+                value = value.substr(1, value.length)
+                J++
+            }
+        } else {
+            return -1
+        }
+    }
+}
+
 // 数字类型字符串或数字
 export const getArrayMin = (array: string[] | number[]) => arraySort(array, true).pop()
 
